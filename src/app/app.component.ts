@@ -8,8 +8,11 @@ import { IndexService } from './index.service';
 })
 export class AppComponent {
   categoryList;
+  firendLink;
 
   constructor(private indexService: IndexService) {
-    this.categoryList = this.indexService.getCategoryList();
+    this.indexService.getCategoryList().subscribe(result => this.categoryList = result);
+
+    this.firendLink = [{ url: "https://angular.cn", name: "angular官网" }];
   }
 }

@@ -1,0 +1,26 @@
+<div class="l">
+    <h2>最近更新小说列表</h2>
+    <ul>
+        <li *ngFor="let item of newUpdateList">
+            <span class="s1">[{{item.category_name}}]</span>
+            <span class="s2"><a routerLink="/novel_info.html?id={{item.id}}" target="_blank">{{item.name}}</a></span>
+            <span class="s3">
+                <a routerLink="/content.html?id={{item.new_chapter_id}}&&categoryId={{item.category_id}}"
+                    target="_blank">{{item.new_chapter}}</a>
+            </span>
+            <span class="s4">{{item.author}}</span>
+            <span class="s5">{{item.update_time}}</span>
+        </li>
+    </ul>
+</div>
+<div class="r">
+    <h2>最新入库小说</h2>
+    <ul>
+        <li *ngFor="let item of  newAddList">
+            <span class="s1">[{{item.category_name}}]</span>
+            <span class="s2"><a routerLink="/novel_info.html?id={{item.id}}">{{item.name}}</a></span>
+            <span class="s5">{{item.create_time}}</span>
+        </li>
+    </ul>
+</div>
+<div class="clear"></div>

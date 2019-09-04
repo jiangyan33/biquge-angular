@@ -1,21 +1,30 @@
-<div class="header">
-  <div class="header_logo">
-    <a href="/">笔趣阁</a>
+<div id="wrapper">
+  <div class="header">
+    <div class="header_logo">
+      <a href="/">笔趣阁</a>
+    </div>
   </div>
-</div>
-<div class="nav">
-  <ul>
-    <li><a href="/">首页</a></li>
-    <li *ngFor="let item of categoryList | async"><a
-        routerLink="/category_info.html?categoryId={{item.id}}">{{item.name}}</a>
-    </li>
-    <li><a href="">临时书架</a></li>
-  </ul>
-</div>
-<!-- <router-outlet></router-outlet> -->
-<div id="main">
-  <div id="hotcontent">
-    <app-hot-content></app-hot-content>
+  <div class="nav">
+    <ul>
+      <li><a href="/">首页</a></li>
+      <li *ngFor="let item of categoryList">
+        <a routerLink="/category_info.html?categoryId={{item.id}}">{{item.name}}</a>
+      </li>
+      <li><a href="">临时书架</a></li>
+    </ul>
   </div>
-  <div id="newscontent"></div>
+  <router-outlet></router-outlet>
+</div>
+<div id="firendlink">
+  友情连接：
+  <a href="https://m.biduo.cc/" target=_blank>笔趣阁</a>
+  <a *ngFor="let item of firendLink" routerLink="{{item.url}}" target=_blank>{{item.name}}</a>
+</div>
+<div class="footer">
+  <div class="footer_cont">
+    <p>
+      本站所有小说为转载作品，所有章节均由网友上传，转载至本站只是为了宣传本书让更多读者欣赏。</p>
+    <p>
+      Copyright ? 2016 笔趣阁 All Rights Reserved.</p>
+  </div>
 </div>

@@ -17,7 +17,25 @@ export class IndexService {
   }
 
   // 获取热度内容
-  getHotList() {
-    return this.http.get(`${this.messageService.get('baseUrl')}Novel/findHot.ac`);
+  getHotList(categoryId?) {
+    let url = `${this.messageService.get('baseUrl')}Novel/${categoryId ? 'categoryInfo' : 'findHot'}.ac`;
+    let options = {
+      categoryId
+    };
+    return this.http.get(url, { params: options });
+  }
+
+  // 获取分类热度内容
+  getCategoryHotList() {
+    return this.http.get(`${this.messageService.get('baseUrl')}Novel/categoryHot.ac`);
+  }
+
+  //最新更新
+  getUpdateList() {
+    return this.http.get(`${this.messageService.get('baseUrl')}Novel/newUpdateList.ac`);
+  }
+  //最新入库
+  getAddList() {
+    return this.http.get(`${this.messageService.get('baseUrl')}Novel/newAddList.ac`);
   }
 }
