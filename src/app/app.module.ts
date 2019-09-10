@@ -15,6 +15,7 @@ import { CategoryRecentComponent } from './category-recent/category-recent.compo
 import { HotContentComponent } from './hot-content/hot-content.component';
 import { RecentComponent } from './recent/recent.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { RecommendationComponent } from './recommendation/recommendation.compone
     RecentComponent,
     RecommendationComponent,
     PageNotFoundComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IndexService } from './index.service';
+import { MessageService } from './message.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,9 @@ import { IndexService } from './index.service';
 export class AppComponent {
 
   categoryList;
-  firendLink;
 
-  constructor(private indexService: IndexService) {
+  constructor(private indexService: IndexService, private messageService: MessageService) {
     this.indexService.getCategoryList().subscribe(result => this.categoryList = result);
-
-    this.firendLink = [{ url: "https://angular.cn", name: "angular官网" }];
   }
   ngOnInit() {
   }
