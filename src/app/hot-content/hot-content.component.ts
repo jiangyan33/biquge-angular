@@ -12,6 +12,8 @@ export class HotContentComponent implements OnInit {
 
   @Input() hotList;
 
+  @Input() style;
+
   constructor() {
   }
 

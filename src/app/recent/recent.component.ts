@@ -14,8 +14,8 @@ export class RecentComponent implements OnInit {
   newUpdateList;
   newAddList;
   constructor(private indexService: IndexService) {
-    this.indexService.getAddList().subscribe(result => this.newAddList = result);;
-    this.indexService.getUpdateList().subscribe(result => this.newUpdateList = result);;
+    this.indexService.getAddList().subscribe(result => this.newAddList = result);
+    this.indexService.getUpdateList().subscribe(result => this.newUpdateList = result);
   }
 
   ngOnInit() {

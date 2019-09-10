@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
 import { MessageService } from "./message.service";
 import { HttpClient } from "@angular/common/http";
-import { catchError, map, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +15,8 @@ export class IndexService {
   }
 
   // 获取热度内容
-  getHotList(categoryId?) {
-    let url = `${this.messageService.get('baseUrl')}Novel/${categoryId ? 'categoryInfo' : 'findHot'}.ac`;
-    let options = {
-      categoryId
-    };
-    return this.http.get(url, { params: options });
+  getHotList() {
+    return this.http.get(`${this.messageService.get('baseUrl')}Novel/findHot.ac`);
   }
 
   // 获取分类热度内容
@@ -37,5 +31,13 @@ export class IndexService {
   //最新入库
   getAddList() {
     return this.http.get(`${this.messageService.get('baseUrl')}Novel/newAddList.ac`);
+  }
+
+  //分类详情
+  getCategoryInfo(categoryId) {
+    let options = {
+      categoryId
+    };
+    return this.http.get(`${this.messageService.get('baseUrl')}Novel/categoryInfo.ac`, { params: options });
   }
 }

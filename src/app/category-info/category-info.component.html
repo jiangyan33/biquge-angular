@@ -1,0 +1,8 @@
+<div id="main">
+    <div id="hotcontent">
+        <app-hot-content [hotList]="categoryInfo[0]" [style]="'ll'"></app-hot-content>
+    </div>
+    <div id="newscontent">
+        <app-category-recent [recentUpdateList]="categoryInfo[2]" [hotList]="categoryInfo[1]"></app-category-recent>
+    </div>
+</div>

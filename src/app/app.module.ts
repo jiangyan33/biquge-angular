@@ -3,27 +3,38 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HotContentComponent } from './hot-content/hot-content.component';
-import { RecommendationComponent } from './recommendation/recommendation.component';
-import { CategoryHotComponent } from './category-hot/category-hot.component';
-import { RecentComponent } from './recent/recent.component';
 import { IndexComponent } from './index/index.component';
+import { CategoryHotComponent } from './category-hot/category-hot.component';
+import { CategoryInfoComponent } from './category-info/category-info.component';
+import { CategoryRecentComponent } from './category-recent/category-recent.component';
+import { HotContentComponent } from './hot-content/hot-content.component';
+import { RecentComponent } from './recent/recent.component';
+import { RecommendationComponent } from './recommendation/recommendation.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HotContentComponent,
-    RecommendationComponent,
-    CategoryHotComponent,
-    RecentComponent,
     IndexComponent,
+    CategoryHotComponent,
+    CategoryInfoComponent,
+    CategoryRecentComponent,
+    HotContentComponent,
+    RecentComponent,
+    RecommendationComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    FormsModule,
+    //http模块
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

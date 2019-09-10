@@ -1,4 +1,4 @@
-<div class="l">
+<div [class]="style">
     <div class="item" *ngFor="let item of hotList">
         <div class="image"><a routerLink="/novel_info.html?id={{item.id}}"><img src="{{item.pic}}" alt="{{item.name}}"
                     width="120" height="150" /></a></div>
