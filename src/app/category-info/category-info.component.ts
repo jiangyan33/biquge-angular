@@ -11,11 +11,25 @@ import { IndexService } from '../index.service';
   styleUrls: ['./category-info.component.css']
 })
 export class CategoryInfoComponent implements OnInit {
+  // 更新
+  recentUpdateList;
+  // 详情热度
+  hotList;
+  // 其他热度
+  otherHotList;
+  // 分类名称
+  categoryName;
 
-  categoryInfo;
   constructor(private router: ActivatedRoute, private indexService: IndexService) {
-    const id = +this.router.snapshot.paramMap.get('categoryId');
-    this.indexService.getCategoryInfo(id).subscribe(result => this.categoryInfo = result);
+    this.router.queryParamMap.subscribe(params => {
+      const categoryId = params.get('categoryId');
+      this.indexService.getCategoryInfo(+categoryId).subscribe(result => {
+        this.hotList = result[0];
+        this.recentUpdateList = result[2];
+        this.otherHotList = result[1];
+        this.categoryName = result[0][0].category_name;
+      });
+    });
   }
 
   ngOnInit() {

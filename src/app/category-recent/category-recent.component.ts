@@ -11,7 +11,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CategoryRecentComponent implements OnInit {
   @Input() hotList;
   @Input() recentUpdateList;
-  constructor() { }
+  @Input() categoryName;
+  constructor() {
+  }
 
   ngOnInit() {
   }

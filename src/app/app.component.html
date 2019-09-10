@@ -8,7 +8,7 @@
         <ul>
             <li><a href="/">首页</a></li>
             <li *ngFor="let item of categoryList">
-                <a routerLink="/category_info.html?categoryId={{item.id}}">{{item.name}}</a>
+                <a routerLink="/category_info" [queryParams]="{categoryId:item.id}">{{item.name}}</a>
             </li>
             <li><a href="">临时书架</a></li>
         </ul>

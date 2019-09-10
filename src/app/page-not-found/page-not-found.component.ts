@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
 
 //404页面
 @Component({
@@ -11,7 +12,7 @@ export class PageNotFoundComponent implements OnInit {
   src: string;
   href: string;
   delay: number;
-  constructor() {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.src = "/assets/images/err.gif";
     this.href = "/";
     this.delay = 5;
@@ -20,5 +21,8 @@ export class PageNotFoundComponent implements OnInit {
   ngOnInit() {
   }
 
+  goBack() {
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
 
 }

@@ -1,20 +1,24 @@
 <div class="l">
-    <h2>好看的{{recentUpdateList[0].category_name}}最近更新列表</h2>
+    <h2>好看的{{categoryName}}最近更新列表</h2>
     <ul>
         <li *ngFor="let item of recentUpdateList">
-            <span class="s2">《<a routerLink="/novel_info.html?id={{item.id}}" target="_blank">{{item.name}}</a>》</span>
-            <span class="s3"><a routerLink="/content.html?id={{item.new_chapter_id}}&&categoryId={{item.category_id}}"
-                    target="_blank">{{item.new_chapter}}</a>({{item.update_time | date:"MM-dd"}})</span>
+            <span class="s2">《<a routerLink="/novel_info.html?id={{item.id}}">{{item.name}}</a>》</span>
+            <span class="s3">
+                <a routerLink="/content"
+                    [queryParams]="{id:item.new_chapter_id,categoryId:item.category_id}">{{item.new_chapter}}</a>
+                ({{item.update_time | date:"MM-dd"}})</span>
             <span class="s5">{{item.author}}</span>
         </li>
     </ul>
 </div>
 <div class="r">
-    <h2>好看的{{recentUpdateList[0].category_name}}</h2>
+    <h2>好看的{{categoryName}}</h2>
     <ul>
-        <li ng-repeat='category in categoryInfo2'><span class="s2"><a
-                    routerLink="/novel_info.html?id={{category.id}}">{{category.name}}</a></span><span
-                class="s5">{{category.author}}</span>
+        <li *ngFor='let item of hotList'>
+            <span class="s2">
+                <a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a>
+            </span>
+            <span class="s5">{{item.author}}</span>
         </li>
     </ul>
 </div>
