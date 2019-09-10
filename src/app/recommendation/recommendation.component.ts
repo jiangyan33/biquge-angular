@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
       <ul>
           <li *ngFor="let item of recommendList">
               <span class="s1">[{{item.categoryName}}]</span>
-              <span class="s2"><a routerLink="/novel_info.html?id={{item.id}}">{{item.name}}</a></span>
+              <span class="s2"><a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a></span>
               <span class="s5">{{item.author}}</span>
           </li>
       </ul>

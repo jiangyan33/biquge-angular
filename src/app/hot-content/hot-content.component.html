@@ -1,9 +1,13 @@
 <div [class]="style">
     <div class="item" *ngFor="let item of hotList">
-        <div class="image"><a routerLink="/novel_info.html?id={{item.id}}"><img src="{{item.pic}}" alt="{{item.name}}"
-                    width="120" height="150" /></a></div>
+        <div class="image">
+            <a routerLink="/novel_info" [queryParams]="{id:item.id}">
+                <img src="{{item.pic}}" alt="{{item.name}}" width="120" height="150" />
+            </a>
+        </div>
         <dl>
-            <dt><span>{{item.author}}</span><a routerLink="/novel_info.html?id={{item.id}}">{{item.name}}</a>
+            <dt><span>{{item.author}}</span>
+                <a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a>
             </dt>
             <dd>{{item.intro}}</dd>
         </dl>

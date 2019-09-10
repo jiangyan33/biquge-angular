@@ -2,7 +2,7 @@
     <h2>好看的{{categoryName}}最近更新列表</h2>
     <ul>
         <li *ngFor="let item of recentUpdateList">
-            <span class="s2">《<a routerLink="/novel_info.html?id={{item.id}}">{{item.name}}</a>》</span>
+            <span class="s2">《<a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a>》</span>
             <span class="s3">
                 <a routerLink="/content"
                     [queryParams]="{id:item.new_chapter_id,categoryId:item.category_id}">{{item.new_chapter}}</a>

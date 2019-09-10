@@ -40,4 +40,12 @@ export class IndexService {
     };
     return this.http.get(`${this.messageService.get('baseUrl')}Novel/categoryInfo.ac`, { params: options });
   }
+
+  //目录详情
+  getNovelInfo(id) {
+    let options = {
+      id
+    };
+    return this.http.get(`${this.messageService.get('baseUrl')}Novel/info.ac`, { params: options });
+  }
 }

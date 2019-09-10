@@ -1,0 +1,49 @@
+<div class="box_con" *ngIf="novelInfo">
+    <div class="con_top">
+        <a routerLink="/">笔趣阁</a> &gt;
+
+        <a routerLink="/category_info" [queryParams]="{categoryId:novelInfo.category_id}">{{novelInfo.category_id}}</a>
+        &gt;
+        {{novelInfo.category_name}}最新章节列表
+    </div>
+    <div id="maininfo">
+        <div id="info">
+            <h1>{{novelInfo.name}}</h1>
+            <p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{novelInfo.author}}</p>
+            <p>状&nbsp;&nbsp;&nbsp;&nbsp;态：{{novelInfo.is_complete===1?'完本':'连载'}},
+                <a routerLink="#">加入书架</a>,
+                <a (click)="gotoEnd()">直达底部</a>
+            </p>
+            <p>最后更新：{{novelInfo.update_time}}</p>
+            <p>最新章节：<a routerLink="/content"
+                    [queryParams]="{id:novelInfo.new_chapter_id,categoryId:novelInfo.category_id}">{{novelInfo.new_chapter}}</a>
+            </p>
+        </div>
+        <div id="intro">
+            <p>{{novelInfo.intro}}</p>
+            <p>各位书友要是觉得《{{novelInfo.name}}》还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！</p>
+        </div>
+    </div>
+    <div id="sidebar">
+        <div id="fmimg"><img alt="{{novelInfo.name}}" src="{{novelInfo.pic}}" width="120" height="150" /></div>
+    </div>
+    <div id="listtj">推荐阅读：<a routerLink="#">推荐阅读</a></div>
+</div>
+<div class="box_con" *ngIf="novelInfo">
+    <div id="list">
+        <dl>
+            <dt>《{{novelInfo.name}}》</dt>
+            <dd *ngFor="let item of novelInfo.chapter">
+                <a routerLink="/content" [queryParams]={id:item.id,categoryId:item.category_id}>{{item.chapter}}</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+<!-- <div id="footer" name="footer">
+    <div class="footer_link">新书推荐：<a href="/biquge/1_1748/" title="真武世界">阅读</a></div>
+    <div class="footer_cont">
+        <p>
+            《{{novelInfo.name}}》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的{{novelInfo.category_name}}，本站转载收集{{novelInfo.name}}最新章节。
+        </p>
+    </div>
+</div> -->

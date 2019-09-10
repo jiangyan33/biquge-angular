@@ -12,30 +12,17 @@ import { MessageService } from '../message.service';
   styleUrls: ['./category-info.component.css']
 })
 export class CategoryInfoComponent implements OnInit {
-  // 更新
-  recentUpdateList;
-  // 详情热度
-  hotList;
-  // 其他热度
-  otherHotList;
-  // 分类名称
-  categoryName;
+  categoryInfo;
 
-  constructor(private router: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
-    this.router.queryParamMap.subscribe(params => {
+  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
+
+    this.route.queryParamMap.subscribe(params => {
       const categoryId = params.get('categoryId');
-      this.indexService.getCategoryInfo(+categoryId).subscribe(result => {
-        this.hotList = result[0];
-        this.recentUpdateList = result[2];
-        this.otherHotList = result[1];
-        this.categoryName = result[0][0] ? result[0][0].category_name : '';
-      });
+      this.indexService.getCategoryInfo(+categoryId).subscribe(result => this.categoryInfo = result);
     });
 
     // 修改页尾
     this.messageService.set('selected', 'categoryInfo');
-
-    console.log(this.messageService.get('selected'));
   }
 
   ngOnInit() {

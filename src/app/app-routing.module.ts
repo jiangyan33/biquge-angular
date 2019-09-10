@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { IndexComponent } from './index/index.component';
 import { CategoryInfoComponent } from './category-info/category-info.component';
+import { NovelInfoComponent } from './novel-info/novel-info.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: 'category_info', component: CategoryInfoComponent },
+  { path: 'novel_info', component: NovelInfoComponent },
   // 默认路由
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

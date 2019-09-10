@@ -3,10 +3,11 @@
     <ul>
         <li *ngFor="let item of newUpdateList">
             <span class="s1">[{{item.category_name}}]</span>
-            <span class="s2"><a routerLink="/novel_info.html?id={{item.id}}" target="_blank">{{item.name}}</a></span>
+            <span class="s2">
+                <a routerLink="/novel_info" [queryParams]="{id:item.id}" target="_blank">{{item.name}}</a></span>
             <span class="s3">
-                <a routerLink="/content.html?id={{item.new_chapter_id}}&&categoryId={{item.category_id}}"
-                    target="_blank">{{item.new_chapter}}</a>
+                <a routerLink="/content"
+                    [queryParams]="{id:item.new_chapter_id,categoryId:item.category_id}">{{item.new_chapter}}</a>
             </span>
             <span class="s4">{{item.author}}</span>
             <span class="s5">{{item.update_time | date:"MM-dd"}}</span>
@@ -18,7 +19,7 @@
     <ul>
         <li *ngFor="let item of  newAddList">
             <span class="s1">[{{item.category_name.substr(0, 2)}}]</span>
-            <span class="s2"><a routerLink="/novel_info.html?id={{item.id}}">{{item.name}}</a></span>
+            <span class="s2"><a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a></span>
             <span class="s5">{{item.create_time | date:"yyyy-MM-dd"}}</span>
         </li>
     </ul>

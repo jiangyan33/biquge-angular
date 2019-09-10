@@ -1,9 +1,9 @@
-<div id="main">
+<div id="main" *ngIf="categoryInfo">
     <div id="hotcontent">
-        <app-hot-content [hotList]="hotList" [style]="'ll'"></app-hot-content>
+        <app-hot-content [hotList]="categoryInfo[0]" [style]="'ll'"></app-hot-content>
     </div>
     <div id="newscontent">
-        <app-category-recent [recentUpdateList]="recentUpdateList" [hotList]="otherHotList"
-            [categoryName]="categoryName"></app-category-recent>
+        <app-category-recent [recentUpdateList]="categoryInfo[2]" [hotList]="categoryInfo[1]"
+            [categoryName]="categoryInfo[0][0]?.category_name"></app-category-recent>
     </div>
 </div>

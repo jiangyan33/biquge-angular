@@ -16,6 +16,7 @@ import { HotContentComponent } from './hot-content/hot-content.component';
 import { RecentComponent } from './recent/recent.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { FooterComponent } from './footer/footer.component';
+import { NovelInfoComponent } from './novel-info/novel-info.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FooterComponent } from './footer/footer.component';
     RecommendationComponent,
     PageNotFoundComponent,
     FooterComponent,
+    NovelInfoComponent,
   ],
   imports: [
     BrowserModule,
