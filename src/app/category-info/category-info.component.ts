@@ -18,11 +18,13 @@ export class CategoryInfoComponent implements OnInit {
 
     this.route.queryParamMap.subscribe(params => {
       const categoryId = params.get('categoryId');
-      this.indexService.getCategoryInfo(+categoryId).subscribe(result => this.categoryInfo = result);
+      this.indexService.getCategoryInfo(+categoryId).subscribe(result => {
+        this.categoryInfo = result;
+        // 修改页尾
+        // 分类页尾为不显示详情信息
+        this.messageService.set('page', 'categoryInfo');
+      });
     });
-
-    // 修改页尾
-    this.messageService.set('selected', 'categoryInfo');
   }
 
   ngOnInit() {

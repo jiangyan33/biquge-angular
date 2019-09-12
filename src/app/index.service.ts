@@ -7,7 +7,10 @@ import { HttpClient } from "@angular/common/http";
 })
 export class IndexService {
 
-  constructor(private messageService: MessageService, private http: HttpClient) { }
+  options;
+  constructor(private messageService: MessageService, private http: HttpClient) {
+    this.options = this.messageService.get('httpOptions');
+  }
 
   // 获取分类列表
   getCategoryList() {
@@ -47,5 +50,14 @@ export class IndexService {
       id
     };
     return this.http.get(`${this.messageService.get('baseUrl')}Novel/info.ac`, { params: options });
+  }
+
+  //内容
+  getContent(id, categoryId: number) {
+    let options = {
+      id,
+      categoryId
+    };
+    return this.http.post(`${this.messageService.get('baseUrl')}Novel/content.ac`, options, this.options);
   }
 }

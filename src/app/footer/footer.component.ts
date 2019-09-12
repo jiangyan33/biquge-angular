@@ -8,8 +8,8 @@ import { MessageService } from '../message.service';
 })
 export class FooterComponent implements OnInit, OnChanges {
   // index,categoryInfo,content,novelInfo
-  @Input() selected;
-  firendLink: any;
+  @Input() page;
+  friendLink: any;
   newBook;
   novelInfo;
   constructor(private messageService: MessageService) {
@@ -17,15 +17,13 @@ export class FooterComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    let selected = changes['selected'].currentValue;
+    let page = changes['page'].currentValue;
 
-    if (selected === 'index') {
-      this.firendLink = this.messageService.get('firendLink');
-    } else if (selected === 'novelInfo') {
+    if (page === 'index') {
+      this.friendLink = this.messageService.get('friendLink');
+    } else {
       this.newBook = this.messageService.get('newBook');
       this.novelInfo = this.messageService.get('novelInfo');
-    } else {
-
     }
   }
   ngOnInit() {

@@ -4,7 +4,7 @@
         <li *ngFor="let item of recentUpdateList">
             <span class="s2">《<a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a>》</span>
             <span class="s3">
-                <a routerLink="/content"
+                <a routerLink="/content_info"
                     [queryParams]="{id:item.new_chapter_id,categoryId:item.category_id}">{{item.new_chapter}}</a>
                 ({{item.update_time | date:"MM-dd"}})</span>
             <span class="s5">{{item.author}}</span>

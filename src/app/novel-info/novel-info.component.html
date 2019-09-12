@@ -14,7 +14,7 @@
                 <a (click)="gotoEnd()">直达底部</a>
             </p>
             <p>最后更新：{{novelInfo.update_time}}</p>
-            <p>最新章节：<a routerLink="/content"
+            <p>最新章节：<a routerLink="/content_info"
                     [queryParams]="{id:novelInfo.new_chapter_id,categoryId:novelInfo.category_id}">{{novelInfo.new_chapter}}</a>
             </p>
         </div>
@@ -33,7 +33,8 @@
         <dl>
             <dt>《{{novelInfo.name}}》目录</dt>
             <dd *ngFor="let item of novelInfo.chapter">
-                <a routerLink="/content" [queryParams]={id:item.id,categoryId:item.category_id}>{{item.chapter}}</a>
+                <a routerLink="/content_info"
+                    [queryParams]={id:item.id,categoryId:item.category_id}>{{item.chapter}}</a>
             </dd>
         </dl>
     </div>

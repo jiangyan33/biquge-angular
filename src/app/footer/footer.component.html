@@ -1,25 +1,23 @@
-<div *ngIf="selected==='index'&&firendLink" id="firendlink">
+<div *ngIf="page==='index'&&friendLink" id="firendlink">
     友情连接：
     <a href="https://m.biduo.cc/" target=_blank>笔趣阁</a>
-    <a *ngFor="let item of firendLink" routerLink="{{item.url}}" target=_blank>{{item.name}}</a>
+    <a *ngFor="let item of friendLink" routerLink="{{item.url}}" target=_blank>{{item.name}}</a>
 </div>
-<div *ngIf="selected==='index'" class="footer">
-    <div class="footer_cont">
-        <p>
-            本站所有小说为转载作品，所有章节均由网友上传，转载至本站只是为了宣传本书让更多读者欣赏。</p>
-        <p>
-            Copyright ? 2016 笔趣阁 All Rights Reserved.</p>
-    </div>
-</div>
-
-<div *ngIf="selected==='novelInfo'&&newBook&&novelInfo" id="footer" name="footer">
-    <div class="footer_link">新书推荐：
+<div class="footer">
+    <div *ngIf="page!=='index'&&newBook" class="footer_link">新书推荐：
         <a *ngFor="let item of newBook" routerLink="/novel_info" [queryParams]="{id:item.id}"
             title="{{item.name}}">{{item.name}}</a>
     </div>
     <div class="footer_cont">
-        <p>
-            《{{novelInfo.name}}》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的{{novelInfo.category_name}}，本站转载收集{{novelInfo.name}}最新章节。
+        <p *ngIf="page!=='categoryInfo'&&page!=='index'&&novelInfo">
+            《<a routerLink="/novel_info"
+                [queryParams]="{id:novelInfo.id}">{{novelInfo.name}}</a>》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的
+            <a routerLink="/category_info"
+                [queryParams]="{categoryId:novelInfo.category_id}">{{novelInfo.category_name}}</a>
+            ，本站转载收集{{novelInfo.name}}最新章节。
         </p>
+        <p>
+            本站所有小说为转载作品，所有章节均由网友上传，转载至本站只是为了宣传本书让更多读者欣赏。</p>
+        <p> Copyright ? 2016 笔趣阁 All Rights Reserved.</p>
     </div>
 </div>

@@ -18,12 +18,10 @@ export class NovelInfoComponent implements OnInit {
       this.indexService.getNovelInfo(+id).subscribe(result => {
         this.novelInfo = result;
         // 修改页尾
-        this.messageService.set('selected', 'novelInfo');
+        this.messageService.set('page', 'novelInfo');
         this.messageService.set('novelInfo', this.novelInfo);
       });
     });
-
-
   }
 
   ngOnInit() {
