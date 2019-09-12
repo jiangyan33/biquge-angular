@@ -10,17 +10,20 @@ import { MessageService } from '../message.service';
   styleUrls: ['./novel-info.component.css']
 })
 export class NovelInfoComponent implements OnInit {
-  // 多定义几个变量
   novelInfo;
 
   constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
     this.route.queryParamMap.subscribe(params => {
       const id = params.get('id');
-      this.indexService.getNovelInfo(+id).subscribe(result => this.novelInfo = result);
+      this.indexService.getNovelInfo(+id).subscribe(result => {
+        this.novelInfo = result;
+        // 修改页尾
+        this.messageService.set('selected', 'novelInfo');
+        this.messageService.set('novelInfo', this.novelInfo);
+      });
     });
 
-    // 修改页尾
-    this.messageService.set('selected', 'novelInfo');
+
   }
 
   ngOnInit() {

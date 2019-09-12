@@ -10,6 +10,8 @@ export class FooterComponent implements OnInit, OnChanges {
   // index,categoryInfo,content,novelInfo
   @Input() selected;
   firendLink: any;
+  newBook;
+  novelInfo;
   constructor(private messageService: MessageService) {
   }
 
@@ -19,10 +21,9 @@ export class FooterComponent implements OnInit, OnChanges {
 
     if (selected === 'index') {
       this.firendLink = this.messageService.get('firendLink');
-    } else if (selected === 'content') {
-
     } else if (selected === 'novelInfo') {
-
+      this.newBook = this.messageService.get('newBook');
+      this.novelInfo = this.messageService.get('novelInfo');
     } else {
 
     }

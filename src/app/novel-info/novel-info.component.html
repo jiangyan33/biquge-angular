@@ -1,10 +1,9 @@
 <div class="box_con" *ngIf="novelInfo">
     <div class="con_top">
         <a routerLink="/">笔趣阁</a> &gt;
-
-        <a routerLink="/category_info" [queryParams]="{categoryId:novelInfo.category_id}">{{novelInfo.category_id}}</a>
-        &gt;
-        {{novelInfo.category_name}}最新章节列表
+        <a routerLink="/category_info"
+            [queryParams]="{categoryId:novelInfo.category_id}">{{novelInfo.category_name}}</a>&gt;
+        {{novelInfo.name}}最新章节列表
     </div>
     <div id="maininfo">
         <div id="info">
@@ -32,18 +31,10 @@
 <div class="box_con" *ngIf="novelInfo">
     <div id="list">
         <dl>
-            <dt>《{{novelInfo.name}}》</dt>
+            <dt>《{{novelInfo.name}}》目录</dt>
             <dd *ngFor="let item of novelInfo.chapter">
                 <a routerLink="/content" [queryParams]={id:item.id,categoryId:item.category_id}>{{item.chapter}}</a>
             </dd>
         </dl>
     </div>
 </div>
-<!-- <div id="footer" name="footer">
-    <div class="footer_link">新书推荐：<a href="/biquge/1_1748/" title="真武世界">阅读</a></div>
-    <div class="footer_cont">
-        <p>
-            《{{novelInfo.name}}》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的{{novelInfo.category_name}}，本站转载收集{{novelInfo.name}}最新章节。
-        </p>
-    </div>
-</div> -->

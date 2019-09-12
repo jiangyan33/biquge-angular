@@ -20,6 +20,10 @@ export class MessageService {
   // 友情链接
   private firendLink = [{ url: "https://angular.cn", name: "angular官网" }];
 
+  // 新书推荐
+  private newBook = [{ name: '剑魔独孤求败', id: '1', category_name: '武侠小说' }];
+
+  novelInfo;
 
   constructor() { }
 
