@@ -2,16 +2,16 @@
     <div class="box_con">
         <div class="con_top">
             <div id="page_set">
-                <select ng-model='font' id="bcolor" name="bcolor">
-                    <option value="方正启体简体">字体</option>
+                <select name="font" (change)="change($event)">
+                    <option value={{style.font}} selected="selected">字体</option>
                     <option value="方正启体简体">默认</option>
                     <option value="黑体">黑体</option>
                     <option value="楷体_GB2312">楷体</option>
                     <option value="微软雅黑">雅黑</option>
                     <option value="宋体">宋体</option>
                 </select>
-                <select ng-model='color' id="bcolor" name="bcolor">
-                    <option value="#2E8B57">颜色</option>
+                <select name="color" (change)="change($event)">
+                    <option value={{style.color}} selected="selected">颜色</option>
                     <option value="#2E8B57">默认</option>
                     <option value="#9370DB">暗紫</option>
                     <option value="#2F4F4F">深灰</option>
@@ -23,8 +23,8 @@
                     <option value="#F5F5DC">米色</option>
                     <option value="#F5F5F5">雾白</option>
                 </select>
-                <select ng-model='size' id="bcolor" name="bcolor">
-                    <option value="14pt">大小</option>
+                <select name="size" (change)="change($event)">
+                    <option value={{style.size}} selected="selected">大小</option>
                     <option value="14pt">默认</option>
                     <option value="10pt">10pt</option>
                     <option value="12pt">12pt</option>
@@ -35,9 +35,9 @@
                     <option value="25pt">25pt</option>
                     <option value="30pt">30pt</option>
                 </select>
-                <select ng-model='bgcolor' id="bcolor" name="bcolor">
-                    <option value="#CCE8CF">背景</option>
-                    <option value="#CCE8CF">默认</option>
+                <select name="bgcolor" (change)="change($event)">
+                    <option value={{style.bgcolor}} selected="selected">背景</option>
+                    <option value="">默认</option>
                     <option value="#FFFFFF">白雪</option>
                     <option value="#FFFFED">明黄</option>
                     <option value="#EEFAEE">淡绿</option>
@@ -47,8 +47,8 @@
                     <option value="#D2B48C">茶色</option>
                     <option value="#C0C0C0">银色</option>
                 </select>
-                <select ng-model='width' id="bcolor" name="bcolor">
-                    <option value="95%">宽度</option>
+                <select name="width" (change)="change($event)">
+                    <option value={{style.width}} selected="selected">宽度</option>
                     <option value="95%">默认</option>
                     <option value="85%">85%</option>
                     <option value="76%">75%</option>
@@ -56,7 +56,7 @@
                     <option value="53%">50%</option>
                     <option value="41%">40%</option>
                 </select>
-                夜间<input type=checkbox name=night id=night />
+                夜间<input type=checkbox name=night id=night checked={{style.checked}} />
             </div>
             <a routerLink="/">笔趣阁</a> &gt;
             <a routerLink="/category_info"
@@ -78,7 +78,7 @@
                 <a href="/biquge/16_16706/">阅读</a>
             </div>
         </div>
-        <div id="content" ng-style="content" [innerHtml]='contentInfo.content'></div>
+        <div id="content" [ngStyle]="style" [innerHtml]='contentInfo.content'></div>
         <div class="bottem2">
             <a *ngIf="contentInfo.pre_id" routerLink="/content_info"
                 [queryParams]="{id:contentInfo.pre_id,categoryId:novelInfo.category_id}">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class MessageService {
 
   novelInfo;
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   get(key) {
     return this[key];
@@ -33,5 +34,15 @@ export class MessageService {
 
   set(key, value) {
     this[key] = value;
+  }
+
+  getCookie(name) {
+    let value = this.cookieService.get(name);
+
+    return JSON.stringify(value)[name];
+  }
+
+  setCookie(name, value) {
+    this.cookieService.set(name, value);
   }
 }

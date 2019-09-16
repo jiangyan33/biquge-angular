@@ -18,7 +18,7 @@ import { RecommendationComponent } from './recommendation/recommendation.compone
 import { FooterComponent } from './footer/footer.component';
 import { NovelInfoComponent } from './novel-info/novel-info.component';
 import { ContentComponent } from './content/content.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { ContentComponent } from './content/content.component';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
