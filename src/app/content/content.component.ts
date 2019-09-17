@@ -107,4 +107,8 @@ export class ContentComponent implements OnInit, OnDestroy {
     // 该组件结束时清空夜间模式
     this.setNightStyle('0');
   }
+
+  getMessage(name) {
+    return this.messageService.get(name);
+  }
 }

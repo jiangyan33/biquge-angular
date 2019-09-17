@@ -1,19 +1,19 @@
-<div id="wrapper" [ngStyle]="this.messageService.get('divStyle')">
+<div id="wrapper" [ngStyle]="getMessage('divStyle')">
     <div class="header">
         <div class="header_logo">
             <a href="/">笔趣阁</a>
         </div>
     </div>
-    <div class="nav" [ngStyle]="this.messageService.get('divStyle')">
+    <div class="nav" [ngStyle]="getMessage('divStyle')">
         <ul>
-            <li><a routerLink="/index" [ngStyle]="this.messageService.get('aStyle')">首页</a></li>
+            <li><a routerLink="/index" [ngStyle]="getMessage('aStyle')">首页</a></li>
             <li *ngFor="let item of categoryList">
-                <a [ngStyle]="this.messageService.get('aStyle')" routerLink="/category_info"
+                <a [ngStyle]="getMessage('aStyle')" routerLink="/category_info"
                     [queryParams]="{categoryId:item.id}">{{item.name}}</a>
             </li>
-            <li><a [ngStyle]="this.messageService.get('aStyle')" routerLink="">临时书架</a></li>
+            <li><a [ngStyle]="getMessage('aStyle')" routerLink="">临时书架</a></li>
         </ul>
     </div>
     <router-outlet></router-outlet>
-    <app-footer [page]="messageService.get('page')"></app-footer>
+    <app-footer [page]="getMessage('page')"></app-footer>
 </div>

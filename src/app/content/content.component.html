@@ -1,7 +1,7 @@
 <div class="content_read" *ngIf="novelInfo&&contentInfo">
     <div class="box_con">
-        <div class="con_top" [ngStyle]="this.messageService.get('divStyle')">
-            <div id="page_set" [ngStyle]="this.messageService.get('divStyle')">
+        <div class="con_top" [ngStyle]="getMessage('divStyle')">
+            <div id="page_set" [ngStyle]="getMessage('divStyle')">
                 <select name="font" (change)="change($event)">
                     <option value={{styleValue.font}} selected="selected">字体</option>
                     <option value="方正启体简体">默认</option>

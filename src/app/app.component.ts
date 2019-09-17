@@ -15,4 +15,8 @@ export class AppComponent {
   constructor(private indexService: IndexService, private messageService: MessageService) {
     this.indexService.getCategoryList().subscribe(result => this.categoryList = result);
   }
+
+  getMessage(name) {
+    return this.messageService.get(name);
+  }
 }
