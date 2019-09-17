@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-
   //请求头信息
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,7 +24,8 @@ export class MessageService {
 
   novelInfo;
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: CookieService) {
+  }
 
   get(key) {
     return this[key];
@@ -37,9 +36,7 @@ export class MessageService {
   }
 
   getCookie(name) {
-    let value = this.cookieService.get(name);
-
-    return JSON.stringify(value)[name];
+    return this.cookieService.get(name);
   }
 
   setCookie(name, value) {

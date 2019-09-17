@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IndexService } from '../index.service';
 import { MessageService } from '../message.service';
@@ -11,7 +11,7 @@ import { StyleValue } from './style-value';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit, OnDestroy {
   //样式值
   styleValue: StyleValue;
   // 样式
@@ -20,7 +20,7 @@ export class ContentComponent implements OnInit {
   novelInfo;
   contentInfo;
 
-  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
+  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService, private elementRef: ElementRef) {
     this.route.queryParamMap.subscribe(params => {
       const id = params.get('id');
       const categoryId = params.get('categoryId');
@@ -42,11 +42,14 @@ export class ContentComponent implements OnInit {
       width: this.messageService.getCookie('width') || '95%',
       size: this.messageService.getCookie('size') || '14pt',
       bgcolor: this.messageService.getCookie('bgcolor') || '',
-      night: this.messageService.getCookie('night') || '',
+      night: this.messageService.getCookie('night') || '0',
     };
-
     //设置样式
     this.setStyle();
+    //首次进入判断是否为夜间模式
+    if (this.styleValue.night === '1') {
+      this.setNightStyle('1');
+    }
   }
 
 
@@ -59,14 +62,14 @@ export class ContentComponent implements OnInit {
     let index = typeEnum.findIndex(it => it === type);
 
     if (index !== -1) {
-      // debugger;
-      this.styleValue[typeEnum[index]] = value;
-
+      //变更前后数据发生了变化时才改变
+      if (value !== this.styleValue[typeEnum[index]]) {
+        this.styleValue[typeEnum[index]] = value;
+      }
       // 设置cookie
       this.messageService.setCookie(typeEnum[index], value);
     }
     this.setStyle();
-    console.log(this.style);
   }
 
   setStyle() {
@@ -79,6 +82,25 @@ export class ContentComponent implements OnInit {
     };
   }
 
+  setNight(event) {
+    const checked = event.target.checked;
+    this.styleValue.night = checked ? '1' : '0';
+    this.setNightStyle(this.styleValue.night);
+    // 写入cookie
+    this.messageService.setCookie('night', this.styleValue.night);
+  }
+
+  setNightStyle(night) {
+    let elements = this.elementRef.nativeElement.getElementsByTagName('div');
+
+    elements[0].style.backgroundColor = +night ? '' : '#111111';
+  }
+
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    // 该组件结束时清空夜间模式
+    this.setNightStyle('0');
   }
 }
