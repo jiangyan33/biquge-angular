@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IndexService } from '../index.service';
 import { MessageService } from '../message.service';
@@ -20,7 +20,7 @@ export class ContentComponent implements OnInit, OnDestroy {
   novelInfo;
   contentInfo;
 
-  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService, private elementRef: ElementRef) {
+  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
     this.route.queryParamMap.subscribe(params => {
       const id = params.get('id');
       const categoryId = params.get('categoryId');
@@ -91,9 +91,13 @@ export class ContentComponent implements OnInit, OnDestroy {
   }
 
   setNightStyle(night) {
-    let elements = this.elementRef.nativeElement.getElementsByTagName('div');
-
-    elements[0].style.backgroundColor = +night ? '' : '#111111';
+    if (night === '1') {
+      this.messageService.set('aStyle', { 'color': '#939392' });
+      this.messageService.set('divStyle', { 'background-color': '#111111' });
+    } else {
+      this.messageService.set('aStyle', { 'color': '' });
+      this.messageService.set('divStyle', { 'background-color': '' });
+    }
   }
 
   ngOnInit() {

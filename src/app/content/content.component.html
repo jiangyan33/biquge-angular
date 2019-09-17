@@ -1,7 +1,7 @@
 <div class="content_read" *ngIf="novelInfo&&contentInfo">
     <div class="box_con">
-        <div class="con_top">
-            <div id="page_set">
+        <div class="con_top" [ngStyle]="this.messageService.get('divStyle')">
+            <div id="page_set" [ngStyle]="this.messageService.get('divStyle')">
                 <select name="font" (change)="change($event)">
                     <option value={{styleValue.font}} selected="selected">字体</option>
                     <option value="方正启体简体">默认</option>
@@ -56,8 +56,7 @@
                     <option value="53%">50%</option>
                     <option value="41%">40%</option>
                 </select>
-                夜间<input type=checkbox name=night [checked]="styleValue.night==='0'?false:true"
-                    (click)="setNight($event)" />
+                夜间<input type=checkbox [checked]="styleValue.night==='0'?false:true" (click)="setNight($event)" />
             </div>
             <a routerLink="/">笔趣阁</a> &gt;
             <a routerLink="/category_info"

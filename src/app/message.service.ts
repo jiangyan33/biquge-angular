@@ -6,6 +6,10 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class MessageService {
+  //夜间模式
+  private aStyle;
+  private divStyle;
+
   //请求头信息
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
