@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+// declare var _DEV_: boolean;
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,14 @@ export class MessageService {
   private aStyle;
   private divStyle;
 
+  private flag: Boolean;
+
   //请求头信息
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private baseUrl = 'http://127.0.0.1:3999/api/';
+  private baseUrl = 'http://127.0.0.1:4999/api/';
 
   //页面信息 初始化为首页
   private page = 'index';
