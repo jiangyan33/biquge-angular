@@ -82,9 +82,8 @@ export class ContentComponent implements OnInit, OnDestroy {
     };
   }
 
-  setNight(event) {
-    const checked = event.target.checked;
-    this.styleValue.night = checked ? '1' : '0';
+  setNight() {
+    this.styleValue.night = this.styleValue.night === '0' ? '1' : '0';
     this.setNightStyle(this.styleValue.night);
     // 写入cookie
     this.messageService.setCookie('night', this.styleValue.night);
