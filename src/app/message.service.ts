@@ -18,7 +18,7 @@ export class MessageService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private baseUrl = 'http://62.234.108.185:4999/api/';
+  private baseUrl = 'http://127.0.0.1:4999/api/';
 
   //页面信息 初始化为首页
   private page = 'index';

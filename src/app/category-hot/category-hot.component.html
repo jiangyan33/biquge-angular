@@ -15,7 +15,7 @@
         </div>
         <ul>
             <li *ngFor="let item of novel.child">
-                <a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a>/{{item.author}}
+                <a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name.substr(0,7)}}</a>/{{item.author}}
             </li>
         </ul>
     </div>
