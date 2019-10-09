@@ -13,7 +13,7 @@
                 <a routerLink="#">加入书架</a>,
                 <a (click)="gotoEnd()">直达底部</a>
             </p>
-            <p>最后更新：{{novelInfo.update_time}}</p>
+            <p>最后更新：{{novelInfo.update_time | date:"yyyy-MM-dd"}}</p>
             <p>最新章节：<a routerLink="/content_info"
                     [queryParams]="{id:novelInfo.new_chapter_id,categoryId:novelInfo.category_id}">{{novelInfo.new_chapter}}</a>
             </p>
