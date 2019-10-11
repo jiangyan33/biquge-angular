@@ -1,0 +1,33 @@
+<div (click)="onContainerClicked($event)" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    [ngClass]="{'in': visibleAnimate}"
+    [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">错误信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" [formGroup]="questionInfo">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">错误描述:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="message-text" rows="3" placeholder="错误信息简短描述"
+                                formControlName="name"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系方式:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="QQ/手机号"
+                                formControlName="linkInformation">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="hide()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="submit()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

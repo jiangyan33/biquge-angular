@@ -27,6 +27,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 
       this.indexService.getContent(id, +categoryId).subscribe(result => {
         this.novelInfo = result[0];
+
         this.contentInfo = result[1];
         this.contentInfo.content = '&nbsp;&nbsp;&nbsp;&nbsp;' + this.contentInfo.content.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
         // 修改页尾

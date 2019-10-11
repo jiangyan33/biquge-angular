@@ -1,4 +1,5 @@
 <div class="content_read" *ngIf="novelInfo&&contentInfo">
+    <app-question #question [contentInfo]="contentInfo"></app-question>
     <div class="box_con">
         <div class="con_top" [ngStyle]="getMessage('divStyle')">
             <div id="page_set" [ngStyle]="getMessage('divStyle')">
@@ -78,14 +79,15 @@
                 <a href="/biquge/16_16706/">阅读</a>
             </div>
         </div>
-        <div id="content" [ngStyle]="style" [innerHtml]='contentInfo.content'></div>
+        <div id="content" [ngStyle]="style" [innerHtml]='contentInfo.content'>
+        </div>
         <div class="bottem2">
             <a *ngIf="contentInfo.pre_id" routerLink="/content_info"
                 [queryParams]="{id:contentInfo.pre_id,categoryId:novelInfo.category_id}">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a routerLink="/novel_info" [queryParams]="{id:novelInfo.id}">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
             <a *ngIf="contentInfo.next_id" routerLink="/content_info"
                 [queryParams]="{id:contentInfo.next_id,categoryId:novelInfo.category_id}">下一章</a>
-            <a>加入书签</a>
+            <a (click)="question.show()" class="danger">章节报错</a>
         </div>
     </div>
 </div>

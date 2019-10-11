@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './index/index.component';
 import { CategoryHotComponent } from './category-hot/category-hot.component';
@@ -19,6 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NovelInfoComponent } from './novel-info/novel-info.component';
 import { ContentComponent } from './content/content.component';
 import { CookieService } from 'ngx-cookie-service';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +35,12 @@ import { CookieService } from 'ngx-cookie-service';
     FooterComponent,
     NovelInfoComponent,
     ContentComponent,
+    QuestionComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    // FormsModule,
+    ReactiveFormsModule,
     //http模块
     HttpClientModule,
     AppRoutingModule,

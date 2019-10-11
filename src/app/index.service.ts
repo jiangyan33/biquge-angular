@@ -60,4 +60,9 @@ export class IndexService {
     };
     return this.http.post(`${this.messageService.get('baseUrl')}Novel/content.ac`, options, this.options);
   }
+
+  //内容
+  addContentQuestion(params) {
+    return this.http.post(`${this.messageService.get('baseUrl')}Feature/addContentQuestion.ac`, params, this.options);
+  }
 }
