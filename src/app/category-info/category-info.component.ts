@@ -17,8 +17,6 @@ export class CategoryInfoComponent implements OnInit {
   constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
 
     this.route.queryParamMap.subscribe(params => {
-      debugger;
-      console.log(params);
       const categoryId = params.get('categoryId');
       this.indexService.getCategoryInfo(+categoryId).subscribe(result => {
         this.categoryInfo = result;

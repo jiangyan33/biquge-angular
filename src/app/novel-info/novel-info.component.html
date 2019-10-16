@@ -30,11 +30,11 @@
 </div>
 <div class="box_con" *ngIf="novelInfo">
     <div id="list">
-        <dl>
-            <dt>《{{novelInfo.name}}》目录</dt>
-            <dd *ngFor="let item of novelInfo.chapter">
+        <dl *ngFor="let partItem of novelInfo.chapter">
+            <dt>{{partItem.partName}}</dt>
+            <dd *ngFor="let item of partItem.chapter">
                 <a routerLink="/content_info"
-                    [queryParams]={id:item.id,categoryId:item.category_id}>{{item.chapter}}</a>
+                    [queryParams]={id:item.id,categoryId:novelInfo.category_id}>{{item.chapter}}</a>
             </dd>
         </dl>
     </div>
