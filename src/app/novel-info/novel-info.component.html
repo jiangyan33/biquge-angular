@@ -19,7 +19,7 @@
             </p>
         </div>
         <div id="intro">
-            <p>{{novelInfo.intro}}</p>
+            <p *ngFor="let item of novelInfo.intro">{{item}}</p>
             <p>各位书友要是觉得《{{novelInfo.name}}》还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！</p>
         </div>
     </div>

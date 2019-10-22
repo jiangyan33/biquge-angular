@@ -72,7 +72,7 @@
                     [queryParams]="{id:contentInfo.pre_id,categoryId:novelInfo.category_id}">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a routerLink="/novel_info" [queryParams]="{id:novelInfo.id}">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
                 <a *ngIf="contentInfo.next_id" routerLink="/content_info"
-                    [queryParams]="{id:contentInfo.next_id,categoryId:novelInfo.category_id}">下一章</a>
+                    [queryParams]="{id:contentInfo.next_id,categoryId:novelInfo.category_id}">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a>加入书签</a>
             </div>
             <div class="lm">推荐阅读：
@@ -86,7 +86,7 @@
                 [queryParams]="{id:contentInfo.pre_id,categoryId:novelInfo.category_id}">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a routerLink="/novel_info" [queryParams]="{id:novelInfo.id}">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
             <a *ngIf="contentInfo.next_id" routerLink="/content_info"
-                [queryParams]="{id:contentInfo.next_id,categoryId:novelInfo.category_id}">下一章</a>
+                [queryParams]="{id:contentInfo.next_id,categoryId:novelInfo.category_id}">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a (click)="question.show()" class="danger">章节报错</a>
         </div>
     </div>
