@@ -5,12 +5,14 @@ import { IndexComponent } from './index/index.component';
 import { CategoryInfoComponent } from './category-info/category-info.component';
 import { NovelInfoComponent } from './novel-info/novel-info.component';
 import { ContentComponent } from './content/content.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: 'category_info', component: CategoryInfoComponent },
   { path: 'novel_info', component: NovelInfoComponent },
   { path: 'content_info', component: ContentComponent },
+  { path: 'search_info', component: SearchComponent },
   // 默认路由
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

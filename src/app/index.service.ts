@@ -61,8 +61,14 @@ export class IndexService {
     return this.http.post(`${this.messageService.get('baseUrl')}Novel/content.ac`, options, this.options);
   }
 
-  //内容
+  //反馈数据
   addContentQuestion(params) {
     return this.http.post(`${this.messageService.get('baseUrl')}Feature/addContentQuestion.ac`, params, this.options);
   }
+
+  //图书搜索
+  search(value) {
+    return this.http.post(`${this.messageService.get('baseUrl')}Feature/search.ac`, { value }, this.options);
+  }
+
 }

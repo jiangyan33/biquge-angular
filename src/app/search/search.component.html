@@ -1,0 +1,30 @@
+<div id="search-main">
+    <div class="search-list">
+        <h2>
+            搜索[<span class="danger">{{value}}</span>]相关小说
+        </h2>
+        <ul>
+            <li><span class="s1"><b>序号</b></span>
+                <span class="s2"><b>作品名称</b></span>
+                <span class="s2"><b>作者</b></span>
+                <span class="s3"><b>最新章节</b></span>
+                <span class="s2"><b>最后更新时间</b></span>
+            </li>
+            <li *ngFor="let item of bookList;let i=index;">
+                <span class="s1">{{i+1}}</span>
+                <span class="s2">
+                    <a routerLink="/novel_info" [queryParams]="{id:item.id}">《{{item.name}}》 </a>
+                </span>
+                <span class="s2">{{item.author}}</span>
+                <span class="s3">
+                    <a routerLink="/content_info"
+                        [queryParams]={id:item.new_chapter_id,categoryId:item.category_id}>{{item.new_chapter}}</a>
+                </span>
+                <span class="s2">{{item.update_time | date:"yyyy-MM-dd"}}
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="clear"></div>
+</div>

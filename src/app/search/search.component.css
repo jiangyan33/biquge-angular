@@ -1,0 +1,84 @@
+#search-main {
+  width: 980px;
+  margin: auto;
+}
+
+.search-list {
+  margin: 10px auto;
+  border: 3px solid #a6d3e8;
+  width: 974px;
+  background: #fef9ef;
+}
+
+.search-list h2 {
+  margin: 0px;
+  background-color: #a6d3e8;
+  border-bottom: 1px solid #dddddd;
+  font-size: 14px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  padding: 0 0 0 10px;
+}
+
+.search-list ul {
+  padding: 10px;
+}
+
+.search-list li {
+  padding: 5px 0px 0px 0px;
+  border-bottom: solid 1px #dddddd;
+  height: 25px;
+  line-height: 25px;
+  overflow: hidden;
+}
+
+.search-list li span {
+  float: left;
+  display: inline-block;
+}
+
+.search-list li .s1 {
+  width: 10%;
+  overflow: hidden;
+}
+
+.search-list li .s2 {
+  width: 15%;
+  overflow: hidden;
+}
+
+.search-list li .s3 {
+  width: 35%;
+  overflow: hidden;
+}
+
+.search-list li .s4 {
+  width: 10%;
+  overflow: hidden;
+}
+
+.search-list li .s5 {
+  color: red;
+  width: 23%;
+  overflow: hidden;
+}
+
+.search-list li .s6 {
+  width: 10%;
+  overflow: hidden;
+}
+
+.search-list li .s7 {
+  width: 7%;
+  overflow: hidden;
+}
+
+.search-list li a {
+  color: #6f78a7;
+}
+
+.danger {
+  color: #ce4844;
+}

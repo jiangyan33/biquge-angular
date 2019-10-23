@@ -20,6 +20,7 @@ import { NovelInfoComponent } from './novel-info/novel-info.component';
 import { ContentComponent } from './content/content.component';
 import { CookieService } from 'ngx-cookie-service';
 import { QuestionComponent } from './question/question.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { QuestionComponent } from './question/question.component';
     NovelInfoComponent,
     ContentComponent,
     QuestionComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
