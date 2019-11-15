@@ -4,7 +4,7 @@
         <li *ngFor="let item of newUpdateList">
             <span class="s1">[{{item.category_name}}]</span>
             <span class="s2">
-                <a routerLink="/novel_info" [queryParams]="{id:item.id}" target="_blank">{{item.name}}</a></span>
+                <a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name}}</a></span>
             <span class="s3">
                 <a routerLink="/content_info"
                     [queryParams]="{id:item.new_chapter_id,categoryId:item.category_id}">{{item.new_chapter}}</a>
