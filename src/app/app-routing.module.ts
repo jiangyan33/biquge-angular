@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
-// 所有的路由信息,在app.module会被引入 
+// 所有的路由信息,在app.module会被引入
 
 @NgModule({
   // 初始化所有的路由信息

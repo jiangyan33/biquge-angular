@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
-//404页面
+// 404页面
 @Component({
   selector: 'app-page-not-found',
   templateUrl: './page-not-found.component.html',
@@ -13,8 +13,8 @@ export class PageNotFoundComponent implements OnInit {
   href: string;
   delay: number;
   constructor(private router: Router, private route: ActivatedRoute) {
-    this.src = "/assets/images/err.gif";
-    this.href = "/";
+    this.src = '/assets/images/err.gif';
+    this.href = '/';
     this.delay = 5;
   }
 

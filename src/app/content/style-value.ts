@@ -1,4 +1,4 @@
-//样式值
+// 样式值
 export class StyleValue {
     font: string;
     color: string;

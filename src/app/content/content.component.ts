@@ -6,14 +6,14 @@ import APIResult from '../entity';
 import { Style } from './style';
 import { StyleValue } from './style-value';
 
-//内容
+// 内容
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit, OnDestroy {
-  //样式值
+  // 样式值
   styleValue: StyleValue;
   // 样式
   style: Style;
@@ -33,10 +33,10 @@ export class ContentComponent implements OnInit, OnDestroy {
     const type = event.target.name;
     const value = event.target.value;
 
-    let index = typeEnum.findIndex(it => it === type);
+    const index = typeEnum.findIndex(it => it === type);
 
     if (index !== -1) {
-      //变更前后数据发生了变化时才改变
+      // 变更前后数据发生了变化时才改变
       if (value !== this.styleValue[typeEnum[index]]) {
         this.styleValue[typeEnum[index]] = value;
       }
@@ -88,7 +88,7 @@ export class ContentComponent implements OnInit, OnDestroy {
       }).catch((err: any) => console.log(err));
     });
 
-    //初始化cookie night,font,color,width,size,bgcolor
+    // 初始化cookie night,font,color,width,size,bgcolor
     this.styleValue = {
       font: this.message.getCookie('font') || '方正启体简体',
       color: this.message.getCookie('color') || '#2E8B57',
@@ -97,9 +97,9 @@ export class ContentComponent implements OnInit, OnDestroy {
       bgcolor: this.message.getCookie('bgcolor') || '',
       night: this.message.getCookie('night') || '0',
     };
-    //设置样式
+    // 设置样式
     this.setStyle();
-    //首次进入判断是否为夜间模式
+    // 首次进入判断是否为夜间模式
     if (this.styleValue.night === '1') {
       this.setNightStyle('1');
     }

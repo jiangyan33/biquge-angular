@@ -22,14 +22,16 @@ export class CategoryInfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe((params: any) => {
-      this.http.get(`${this.message.baseUrl}Novel/categoryInfo.ac`, { params: { categoryId: params.categoryId } }).toPromise().then((result: APIResult) => {
-        if (result.code === 200) {
-          this.categoryInfo = result.data;
-          // 修改页尾
-          // 分类页尾为不显示详情信息
-          this.message.set('page', 'categoryInfo');
-        }
-      }).catch((err: any) => console.log(err));
+      this.http.get(`${this.message.baseUrl}Novel/categoryInfo.ac`, { params: { categoryId: params.categoryId } })
+        .toPromise()
+        .then((result: APIResult) => {
+          if (result.code === 200) {
+            this.categoryInfo = result.data;
+            // 修改页尾
+            // 分类页尾为不显示详情信息
+            this.message.set('page', 'categoryInfo');
+          }
+        }).catch((err: any) => console.log(err));
     });
   }
 }

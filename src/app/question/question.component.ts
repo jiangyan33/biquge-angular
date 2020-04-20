@@ -38,7 +38,7 @@ export class QuestionComponent implements OnInit {
   }
 
   onContainerClicked(event: MouseEvent): void {
-    if ((<HTMLElement>event.target).classList.contains('question')) {
+    if ((event.target as HTMLElement).classList.contains('question')) {
       this.hide();
     }
   }
@@ -46,7 +46,7 @@ export class QuestionComponent implements OnInit {
   submit() {
     // 清除模态框
     this.hide();
-    let params = this.questionInfo.value;
+    const params = this.questionInfo.value;
 
     if (params.name && params.linkInformation) {
       this.http.post(`${this.message.baseUrl}Feature/addContentQuestion.ac`, params).toPromise().then((result: APIResult) => {

@@ -33,8 +33,8 @@ export class NovelInfoComponent implements OnInit {
   }
 
   gotoEnd() {
-    let width = document.body.clientWidth;
-    let height = document.body.clientHeight;
+    const width = document.body.clientWidth;
+    const height = document.body.clientHeight;
 
     window.scrollTo(width, height);
   }

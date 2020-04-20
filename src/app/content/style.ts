@@ -1,4 +1,4 @@
-//样式
+// 样式
 export class Style {
     'color': string;
     'background-color': string;

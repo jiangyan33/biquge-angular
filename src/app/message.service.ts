@@ -7,24 +7,24 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class MessageService {
-  //夜间模式
+  // 夜间模式
   private aStyle: any;
   private divStyle: any;
 
-  private flag: Boolean;
+  private flag: boolean;
 
-  //请求头信息
+  // 请求头信息
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   readonly baseUrl = environment.baseUrl;
 
-  //页面信息 初始化为首页
+  // 页面信息 初始化为首页
   private page = 'index';
 
   // 友情链接
-  private friendLink = [{ url: "https://angular.cn", name: "angular官网" }];
+  private friendLink = [{ url: 'https://angular.cn', name: 'angular官网' }];
 
   // 新书推荐
   private newBook = [{ name: '剑魔独孤求败', id: '1', category_name: '武侠小说' }];

@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    let page = changes['page'].currentValue;
+    const page = changes.page.currentValue;
 
     if (page === 'index') {
       this.friendLink = this.message.get('friendLink');
