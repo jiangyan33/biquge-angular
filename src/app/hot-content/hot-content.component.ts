@@ -10,9 +10,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HotContentComponent implements OnInit {
 
-  @Input() hotList;
+  @Input() hotList: any;
 
-  @Input() style;
+  @Input() style: any;
 
   constructor() {
   }

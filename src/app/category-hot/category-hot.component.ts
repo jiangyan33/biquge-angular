@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IndexService } from '../index.service';
-
+import { MessageService } from '../message.service';
+import { HttpClient } from '@angular/common/http';
+import APIResult from '../entity';
 /**
  * 分类热度
  */
@@ -11,13 +12,19 @@ import { IndexService } from '../index.service';
 })
 export class CategoryHotComponent implements OnInit {
 
-  categoryHot;
+  categoryHot: any;
 
-  constructor(private indexService: IndexService) {
-    this.indexService.getCategoryHotList().subscribe(result => this.categoryHot = result);
-  }
+  constructor(
+    private http: HttpClient,
+    private message: MessageService
+  ) { }
 
   ngOnInit() {
+    this.http.get(`${this.message.baseUrl}Novel/categoryHot.ac`).toPromise().then((result: APIResult) => {
+      if (result.code === 200) {
+        this.categoryHot = result.data;
+      }
+    }).catch((err: any) => console.log(err));
   }
 
 }

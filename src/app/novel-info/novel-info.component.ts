@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IndexService } from '../index.service';
 import { MessageService } from '../message.service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import APIResult from '../entity';
 
 // 内容详情
 @Component({
@@ -10,21 +11,25 @@ import { MessageService } from '../message.service';
   styleUrls: ['./novel-info.component.css']
 })
 export class NovelInfoComponent implements OnInit {
-  novelInfo;
+  novelInfo: any;
 
-  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
-    this.route.queryParamMap.subscribe(params => {
-      const id = params.get('id');
-      this.indexService.getNovelInfo(+id).subscribe(result => {
-        this.novelInfo = result;
-        // 修改页尾
-        this.messageService.set('page', 'novelInfo');
-        this.messageService.set('novelInfo', this.novelInfo);
-      });
-    });
-  }
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private message: MessageService
+  ) { }
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe((params: any) => {
+      this.http.get(`${this.message.baseUrl}Novel/info.ac`, { params: { id: params.id } }).toPromise().then((result: APIResult) => {
+        if (result.code === 200) {
+          this.novelInfo = result;
+          // 修改页尾
+          this.message.set('page', 'novelInfo');
+          this.message.set('novelInfo', this.novelInfo);
+        }
+      }).catch((err: any) => console.log(err));
+    });
   }
 
   gotoEnd() {

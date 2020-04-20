@@ -1,0 +1,21 @@
+<div class="header">
+    <div class="header_logo">
+        <a href="/">笔趣阁</a>
+    </div>
+    <div class="search">
+        <form [formGroup]="formData" (ngSubmit)="search()">
+            <input type="search" class="text" placeholder="图书名称、作者" formControlName="searchKey" />
+            <input type="submit" class="btn" value="搜 索">
+        </form>
+    </div>
+</div>
+<div class="nav" [ngStyle]="getMessage('divStyle')">
+    <ul>
+        <li><a routerLink="/index" [ngStyle]="getMessage('aStyle')">首页</a></li>
+        <li *ngFor="let item of categoryList">
+            <a [ngStyle]="getMessage('aStyle')" routerLink="/category_info"
+                [queryParams]="{categoryId:item.id}">{{item.name}}</a>
+        </li>
+        <li><a [ngStyle]="getMessage('aStyle')" routerLink="">临时书架</a></li>
+    </ul>
+</div>

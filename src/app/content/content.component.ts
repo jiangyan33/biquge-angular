@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IndexService } from '../index.service';
 import { MessageService } from '../message.service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import APIResult from '../entity';
 import { Style } from './style';
 import { StyleValue } from './style-value';
 
@@ -17,45 +18,17 @@ export class ContentComponent implements OnInit, OnDestroy {
   // 样式
   style: Style;
 
-  novelInfo;
-  contentInfo;
+  novelInfo: any;
+  contentInfo: any;
 
-  constructor(private route: ActivatedRoute, private indexService: IndexService, private messageService: MessageService) {
-    this.route.queryParamMap.subscribe(params => {
-      const id = params.get('id');
-      const categoryId = params.get('categoryId');
-
-      this.indexService.getContent(id, +categoryId).subscribe(result => {
-        this.novelInfo = result[0];
-
-        this.contentInfo = result[1];
-        this.contentInfo.content = '&nbsp;&nbsp;&nbsp;&nbsp;' + this.contentInfo.content.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
-        // 修改页尾
-        this.messageService.set('page', 'contentInfo');
-        this.messageService.set('novelInfo', this.novelInfo);
-      });
-    });
-
-    //初始化cookie night,font,color,width,size,bgcolor
-    this.styleValue = {
-      font: this.messageService.getCookie('font') || '方正启体简体',
-      color: this.messageService.getCookie('color') || '#2E8B57',
-      width: this.messageService.getCookie('width') || '95%',
-      size: this.messageService.getCookie('size') || '14pt',
-      bgcolor: this.messageService.getCookie('bgcolor') || '',
-      night: this.messageService.getCookie('night') || '0',
-    };
-    //设置样式
-    this.setStyle();
-    //首次进入判断是否为夜间模式
-    if (this.styleValue.night === '1') {
-      this.setNightStyle('1');
-    }
-  }
-
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private message: MessageService
+  ) { }
 
   // 样式变更
-  change(event) {
+  change(event: { target: { name: any; value: any; }; }) {
     const typeEnum = ['font', 'color', 'width', 'size', 'bgcolor'];
     const type = event.target.name;
     const value = event.target.value;
@@ -68,7 +41,7 @@ export class ContentComponent implements OnInit, OnDestroy {
         this.styleValue[typeEnum[index]] = value;
       }
       // 设置cookie
-      this.messageService.setCookie(typeEnum[index], value);
+      this.message.setCookie(typeEnum[index], value);
     }
     this.setStyle();
   }
@@ -87,20 +60,49 @@ export class ContentComponent implements OnInit, OnDestroy {
     this.styleValue.night = this.styleValue.night === '0' ? '1' : '0';
     this.setNightStyle(this.styleValue.night);
     // 写入cookie
-    this.messageService.setCookie('night', this.styleValue.night);
+    this.message.setCookie('night', this.styleValue.night);
   }
 
-  setNightStyle(night) {
+  setNightStyle(night: string) {
     if (night === '1') {
-      this.messageService.set('aStyle', { 'color': '#939392' });
-      this.messageService.set('divStyle', { 'background-color': '#111111' });
+      this.message.set('aStyle', { 'color': '#939392' });
+      this.message.set('divStyle', { 'background-color': '#111111' });
     } else {
-      this.messageService.set('aStyle', { 'color': '' });
-      this.messageService.set('divStyle', { 'background-color': '' });
+      this.message.set('aStyle', { 'color': '' });
+      this.message.set('divStyle', { 'background-color': '' });
     }
   }
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe((params: any) => {
+      this.http.get(`${this.message.baseUrl}Novel/categoryHot.ac`, { params: { id: params.id } }).toPromise().then((result: APIResult) => {
+        if (result.code === 200) {
+          this.novelInfo = result.data[0];
+          this.contentInfo = result.data[1];
+
+          this.contentInfo.content = '&nbsp;&nbsp;&nbsp;&nbsp;' + this.contentInfo.content.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
+          // 修改页尾
+          this.message.set('page', 'contentInfo');
+          this.message.set('novelInfo', this.novelInfo);
+        }
+      }).catch((err: any) => console.log(err));
+    });
+
+    //初始化cookie night,font,color,width,size,bgcolor
+    this.styleValue = {
+      font: this.message.getCookie('font') || '方正启体简体',
+      color: this.message.getCookie('color') || '#2E8B57',
+      width: this.message.getCookie('width') || '95%',
+      size: this.message.getCookie('size') || '14pt',
+      bgcolor: this.message.getCookie('bgcolor') || '',
+      night: this.message.getCookie('night') || '0',
+    };
+    //设置样式
+    this.setStyle();
+    //首次进入判断是否为夜间模式
+    if (this.styleValue.night === '1') {
+      this.setNightStyle('1');
+    }
   }
 
   ngOnDestroy() {
@@ -108,7 +110,7 @@ export class ContentComponent implements OnInit, OnDestroy {
     this.setNightStyle('0');
   }
 
-  getMessage(name) {
-    return this.messageService.get(name);
+  getMessage(name: string) {
+    return this.message.get(name);
   }
 }

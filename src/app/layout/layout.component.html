@@ -1,0 +1,5 @@
+<div id="wrapper" [ngStyle]="getMessage('divStyle')">
+    <app-topbar></app-topbar>
+    <router-outlet></router-outlet>
+    <app-footer [page]="getMessage('page')"></app-footer>
+</div>

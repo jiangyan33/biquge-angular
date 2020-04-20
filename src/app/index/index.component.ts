@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IndexService } from '../index.service';
 import { MessageService } from '../message.service';
-
+import { HttpClient } from '@angular/common/http';
+import APIResult from '../entity';
 /**
  * 首页
  */
@@ -13,15 +13,18 @@ import { MessageService } from '../message.service';
 export class IndexComponent implements OnInit {
   hotList: any;
 
-  constructor(private indexService: IndexService, private messageService: MessageService) {
-    this.indexService.getHotList().subscribe(result => {
-      this.hotList = result;
-      // 修改页尾
-      this.messageService.set('page', 'index');
-    });
-  }
+  constructor(
+    private http: HttpClient,
+    private message: MessageService
+  ) { }
 
   ngOnInit() {
+    this.http.get(`${this.message.baseUrl}Novel/findHot.ac`).toPromise().then((result: APIResult) => {
+      if (result.code === 200) {
+        this.hotList = result.data;
+        this.message.set('page', 'index');
+      }
+    }).catch((err: any) => console.log(err));
   }
 
 }

@@ -9,9 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./category-recent.component.css']
 })
 export class CategoryRecentComponent implements OnInit {
-  @Input() hotList;
-  @Input() recentUpdateList;
-  @Input() categoryName;
+  @Input() hotList: any;
+  @Input() recentUpdateList: any;
+  @Input() categoryName: any;
   constructor() {
   }
 

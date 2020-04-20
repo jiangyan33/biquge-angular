@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-// declare var _DEV_: boolean;
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
   //夜间模式
-  private aStyle;
-  private divStyle;
+  private aStyle: any;
+  private divStyle: any;
 
   private flag: Boolean;
 
@@ -18,8 +18,7 @@ export class MessageService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  // private baseUrl = 'http://127.0.0.1:4999/api/';
-  private baseUrl = 'http://120.79.185.158:4999/api/';
+  readonly baseUrl = environment.baseUrl;
 
   //页面信息 初始化为首页
   private page = 'index';
@@ -30,24 +29,24 @@ export class MessageService {
   // 新书推荐
   private newBook = [{ name: '剑魔独孤求败', id: '1', category_name: '武侠小说' }];
 
-  novelInfo;
+  novelInfo: any;
 
   constructor(private cookieService: CookieService) {
   }
 
-  get(key) {
+  get(key: string) {
     return this[key];
   }
 
-  set(key, value) {
+  set(key: string, value: any) {
     this[key] = value;
   }
 
-  getCookie(name) {
+  getCookie(name: string) {
     return this.cookieService.get(name);
   }
 
-  setCookie(name, value) {
+  setCookie(name: string, value: string) {
     this.cookieService.set(name, value);
   }
 }

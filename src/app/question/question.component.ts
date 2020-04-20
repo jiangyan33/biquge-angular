@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { IndexService } from '../index.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { MessageService } from '../message.service';
+import APIResult from '../entity';
 
 @Component({
   selector: 'app-question',
@@ -9,19 +11,20 @@ import { IndexService } from '../index.service';
 })
 export class QuestionComponent implements OnInit {
 
-  @Input() contentInfo;
+  @Input() contentInfo: { novel_id: any; id: any; };
 
-  questionInfo;
-
+  questionInfo: FormGroup;
 
   visible = false;
   visibleAnimate = false;
 
-  constructor(private formBuilder: FormBuilder, private indexService: IndexService, ) {
-  }
+  constructor(
+    private http: HttpClient,
+    private message: MessageService
+  ) { }
 
   ngOnInit() {
-    this.setFormData();
+    this.initFormData();
   }
 
   show(): void {
@@ -46,28 +49,19 @@ export class QuestionComponent implements OnInit {
     let params = this.questionInfo.value;
 
     if (params.name && params.linkInformation) {
-      this.indexService.addContentQuestion(params).subscribe(result => {
-        if (result['success'] === 1) {
-          window.alert('错误信息提交成功');
-          // 清空数据
-          this.setFormData();
+      this.http.post(`${this.message.baseUrl}Feature/addContentQuestion.ac`, params).toPromise().then((result: APIResult) => {
+        if (result.code === 200) {
+          window.alert('感谢您的反馈');
         }
-        if (result['success'] === 2) {
-          window.alert(result['message']);
-          // 清空数据
-          this.setFormData();
-        }
-      });
+      }).catch((err: any) => console.log(err));
     }
   }
-
-  setFormData() {
-    //初始化form表单中的内容
-    this.questionInfo = this.formBuilder.group({
-      name: undefined,
-      bookId: this.contentInfo.novel_id,
-      chapterId: this.contentInfo.id,
-      linkInformation: undefined
+  initFormData() {
+    this.questionInfo = new FormGroup({
+      name: new FormControl(''),
+      bookId: new FormControl(''),
+      chapterId: new FormControl(''),
+      linkInformation: new FormControl(''),
     });
   }
 }

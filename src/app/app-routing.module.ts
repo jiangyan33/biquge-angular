@@ -9,10 +9,10 @@ import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
-  { path: 'category_info', component: CategoryInfoComponent },
-  { path: 'novel_info', component: NovelInfoComponent },
-  { path: 'content_info', component: ContentComponent },
-  { path: 'search_info', component: SearchComponent },
+  { path: 'categoryInfo', component: CategoryInfoComponent },
+  { path: 'novelInfo', component: NovelInfoComponent },
+  { path: 'contentInfo', component: ContentComponent },
+  { path: 'searchInfo', component: SearchComponent },
   // 默认路由
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

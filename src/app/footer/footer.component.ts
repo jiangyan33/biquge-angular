@@ -8,11 +8,11 @@ import { MessageService } from '../message.service';
 })
 export class FooterComponent implements OnInit, OnChanges {
   // index,categoryInfo,content,novelInfo
-  @Input() page;
+  @Input() page: any;
   friendLink: any;
-  newBook;
-  novelInfo;
-  constructor(private messageService: MessageService) {
+  newBook: any;
+  novelInfo: any;
+  constructor(private message: MessageService) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -20,10 +20,10 @@ export class FooterComponent implements OnInit, OnChanges {
     let page = changes['page'].currentValue;
 
     if (page === 'index') {
-      this.friendLink = this.messageService.get('friendLink');
+      this.friendLink = this.message.get('friendLink');
     } else {
-      this.newBook = this.messageService.get('newBook');
-      this.novelInfo = this.messageService.get('novelInfo');
+      this.newBook = this.message.get('newBook');
+      this.novelInfo = this.message.get('novelInfo');
     }
   }
   ngOnInit() {

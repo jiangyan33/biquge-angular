@@ -21,6 +21,8 @@ import { ContentComponent } from './content/content.component';
 import { CookieService } from 'ngx-cookie-service';
 import { QuestionComponent } from './question/question.component';
 import { SearchComponent } from './search/search.component';
+import { LayoutComponent } from './layout/layout.component';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { SearchComponent } from './search/search.component';
     ContentComponent,
     QuestionComponent,
     SearchComponent,
+    LayoutComponent,
+    TopbarComponent,
   ],
   imports: [
     BrowserModule,
