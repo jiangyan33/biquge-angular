@@ -39,7 +39,7 @@ export class TopbarComponent implements OnInit {
   search() {
     const formData = this.formData.value;
     if (formData.searchKey.trim()) {
-      this.router.navigate(['/searchInfo'], { queryParams: formData });
+      this.router.navigate([`/book/searchInfo/${formData.searchKey}`]);
     }
   }
 

@@ -1,8 +1,7 @@
 <div class="box_con" *ngIf="novelInfo">
     <div class="con_top">
-        <a routerLink="/">笔趣阁</a> &gt;
-        <a routerLink="/category_info"
-            [queryParams]="{categoryId:novelInfo.category_id}">{{novelInfo.category_name}}</a>&gt;
+        <a routerLink="/book">笔趣阁</a> &gt;
+        <a [routerLink]="['/book/categoryInfo',novelInfo.category_id]">{{novelInfo.category_name}}</a>&gt;
         {{novelInfo.name}}最新章节列表
     </div>
     <div id="maininfo">
@@ -14,8 +13,7 @@
                 <a (click)="gotoEnd()">直达底部</a>
             </p>
             <p>最后更新：{{novelInfo.update_time | date:"yyyy-MM-dd"}}</p>
-            <p>最新章节：<a routerLink="/content_info"
-                    [queryParams]="{id:novelInfo.new_chapter_id,categoryId:novelInfo.category_id}">{{novelInfo.new_chapter}}</a>
+            <p>最新章节：<a [routerLink]="['/book/contentInfo',novelInfo.new_chapter_id]">{{novelInfo.new_chapter}}</a>
             </p>
         </div>
         <div id="intro">
@@ -33,8 +31,7 @@
         <dl *ngFor="let partItem of novelInfo.chapter">
             <dt>{{partItem.partName}}</dt>
             <dd *ngFor="let item of partItem.chapter">
-                <a routerLink="/content_info"
-                    [queryParams]={id:item.id,categoryId:novelInfo.category_id}>{{item.chapter}}</a>
+                <a [routerLink]="['/book/contentInfo',item.id]">{{item.chapter}}</a>
             </dd>
         </dl>
     </div>

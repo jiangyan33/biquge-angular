@@ -20,10 +20,10 @@ export class NovelInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe((params: any) => {
-      this.http.get(`${this.message.baseUrl}Novel/info.ac`, { params: { id: params.id } }).toPromise().then((result: APIResult) => {
+    this.route.paramMap.subscribe((params: any) => {
+      this.http.post(`${this.message.baseUrl}Novel/info.ac`, { id: params.params.bookId }).toPromise().then((result: APIResult) => {
         if (result.code === 200) {
-          this.novelInfo = result;
+          this.novelInfo = result.data;
           // 修改页尾
           this.message.set('page', 'novelInfo');
           this.message.set('novelInfo', this.novelInfo);

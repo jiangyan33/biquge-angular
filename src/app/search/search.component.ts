@@ -22,9 +22,9 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe((params: any) => {
-      this.value = params.searchKey;
-      this.http.get(`${this.message.baseUrl}Feature/search.ac`).toPromise().then((result: APIResult) => {
+    this.route.paramMap.subscribe((params: any) => {
+      this.value = params.params.value;
+      this.http.post(`${this.message.baseUrl}Feature/search.ac`, { value: this.value }).toPromise().then((result: APIResult) => {
         if (result.code === 200) {
           this.bookList = result.data;
           // 修改页尾

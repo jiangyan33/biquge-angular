@@ -6,15 +6,37 @@ import { CategoryInfoComponent } from './category-info/category-info.component';
 import { NovelInfoComponent } from './novel-info/novel-info.component';
 import { ContentComponent } from './content/content.component';
 import { SearchComponent } from './search/search.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: 'index', component: IndexComponent },
-  { path: 'categoryInfo', component: CategoryInfoComponent },
-  { path: 'novelInfo', component: NovelInfoComponent },
-  { path: 'contentInfo', component: ContentComponent },
-  { path: 'searchInfo', component: SearchComponent },
+  {
+    path: 'book',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: IndexComponent
+      },
+      {
+        path: 'categoryInfo/:categoryId',
+        component: CategoryInfoComponent
+      },
+      {
+        path: 'bookInfo/:bookId',
+        component: NovelInfoComponent
+      },
+      {
+        path: 'contentInfo/:chapterId',
+        component: ContentComponent
+      },
+      {
+        path: 'searchInfo/:value',
+        component: SearchComponent
+      }
+    ]
+  },
   // 默认路由
-  { path: '', redirectTo: '/index', pathMatch: 'full' },
+  { path: '', redirectTo: '/book', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 // 所有的路由信息,在app.module会被引入

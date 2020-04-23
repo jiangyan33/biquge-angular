@@ -13,12 +13,11 @@
             <li *ngFor="let item of bookList;let i=index;">
                 <span class="s1">{{i+1}}</span>
                 <span class="s2">
-                    <a routerLink="/novel_info" [queryParams]="{id:item.id}">《{{item.name}}》 </a>
+                    <a [routerLink]="['/book/bookInfo',item.id]">《{{item.name}}》 </a>
                 </span>
                 <span class="s2">{{item.author}}</span>
                 <span class="s3">
-                    <a routerLink="/content_info"
-                        [queryParams]={id:item.new_chapter_id,categoryId:item.category_id}>{{item.new_chapter}}</a>
+                    <a [routerLink]="['/book/contentInfo',item.new_chapter_id]">{{item.new_chapter}}</a>
                 </span>
                 <span class="s2">{{item.update_time | date:"yyyy-MM-dd"}}
                 </span>

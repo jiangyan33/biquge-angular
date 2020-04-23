@@ -3,19 +3,19 @@
         <h2>{{novel.category_name}}</h2>
         <div class="top">
             <div class="image">
-                <a routerLink="/novel_info" [queryParams]="{id:novel.id}">
+                <a [routerLink]="['/book/bookInfo',novel.id]">
                     <img src="{{novel.pic}}" alt="{{novel.name}}" width="67" height="82" />
                 </a>
             </div>
             <dl>
-                <dt><a routerLink="/novel_info" [queryParams]="{id:novel.id}">{{novel.name}}</a></dt>
+                <dt><a [routerLink]="['/book/bookInfo',novel.id]">{{novel.name}}</a></dt>
                 <dd> {{novel.intro}}</dd>
             </dl>
             <div class="clear"></div>
         </div>
         <ul>
             <li *ngFor="let item of novel.child">
-                <a routerLink="/novel_info" [queryParams]="{id:item.id}">{{item.name.substr(0,7)}}</a>/{{item.author}}
+                <a [routerLink]="['/book/bookInfo',item.id]">{{item.name.substr(0,7)}}</a>/{{item.author}}
             </li>
         </ul>
     </div>
