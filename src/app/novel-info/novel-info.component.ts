@@ -22,7 +22,7 @@ export class NovelInfoComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
       this.http.post(`${this.message.baseUrl}Novel/info.ac`, { id: params.params.bookId }).toPromise().then((result: APIResult) => {
-        if (result.code === 200) {
+        if (result.code === 0) {
           this.novelInfo = result.data;
           // 修改页尾
           this.message.set('page', 'novelInfo');

@@ -76,7 +76,7 @@ export class ContentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
       this.http.post(`${this.message.baseUrl}Novel/content.ac`, { id: params.params.chapterId }).toPromise().then((result: APIResult) => {
-        if (result.code === 200) {
+        if (result.code === 0) {
           this.novelInfo = result.data[0];
           this.contentInfo = result.data[1];
 

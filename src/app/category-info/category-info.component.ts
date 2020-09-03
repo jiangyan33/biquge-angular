@@ -25,7 +25,7 @@ export class CategoryInfoComponent implements OnInit {
       this.http.post(`${this.message.baseUrl}Novel/categoryInfo.ac`, { categoryId: params.params.categoryId })
         .toPromise()
         .then((result: APIResult) => {
-          if (result.code === 200) {
+          if (result.code === 0) {
             this.categoryInfo = result.data;
             // 修改页尾
             // 分类页尾为不显示详情信息

@@ -20,8 +20,8 @@ export class CategoryHotComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get(`${this.message.baseUrl}Novel/categoryHot.ac`).toPromise().then((result: APIResult) => {
-      if (result.code === 200) {
+    this.http.get(`${this.message.baseUrl}categories/books`).toPromise().then((result: APIResult) => {
+      if (result.code === 0) {
         this.categoryHot = result.data;
       }
     }).catch((err: any) => console.log(err));

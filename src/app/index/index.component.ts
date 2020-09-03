@@ -19,9 +19,9 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get(`${this.message.baseUrl}Novel/findHot.ac`).toPromise().then((result: APIResult) => {
-      if (result.code === 200) {
-        this.hotList = result.data;
+    this.http.get(`${this.message.baseUrl}books?isAsc=false&sort=hot&pageSize=4&pageNum=1`).toPromise().then((result: APIResult) => {
+      if (result.code === 0) {
+        this.hotList = result.data.data;
         this.message.set('page', 'index');
       }
     }).catch((err: any) => console.log(err));

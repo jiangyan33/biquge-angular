@@ -1,20 +1,20 @@
-<div class="novelslist" *ngFor="let novelList of categoryHot">
-    <div class="content border" *ngFor="let novel of novelList">
-        <h2>{{novel.category_name}}</h2>
+<div class="novelslist" *ngFor="let categories of categoryHot">
+    <div class="content border" *ngFor="let category of categories">
+        <h2>{{category.book.categoryName}}</h2>
         <div class="top">
             <div class="image">
-                <a [routerLink]="['/book/bookInfo',novel.id]">
-                    <img src="{{novel.pic}}" alt="{{novel.name}}" width="67" height="82" />
+                <a [routerLink]="['/book/bookInfo',category.book.id]">
+                    <img src="{{category.book.pic}}" alt="{{category.book.name}}" width="67" height="82" />
                 </a>
             </div>
             <dl>
-                <dt><a [routerLink]="['/book/bookInfo',novel.id]">{{novel.name}}</a></dt>
-                <dd> {{novel.intro}}</dd>
+                <dt><a [routerLink]="['/book/bookInfo',category.book.id]">{{category.book.name}}</a></dt>
+                <dd> {{category.book.intro}}</dd>
             </dl>
             <div class="clear"></div>
         </div>
         <ul>
-            <li *ngFor="let item of novel.child">
+            <li *ngFor="let item of category.books">
                 <a [routerLink]="['/book/bookInfo',item.id]">{{item.name.substr(0,7)}}</a>/{{item.author}}
             </li>
         </ul>

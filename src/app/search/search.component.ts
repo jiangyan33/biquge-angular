@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
     this.route.paramMap.subscribe((params: any) => {
       this.value = params.params.value;
       this.http.post(`${this.message.baseUrl}Feature/search.ac`, { value: this.value }).toPromise().then((result: APIResult) => {
-        if (result.code === 200) {
+        if (result.code === 0) {
           this.bookList = result.data;
           // 修改页尾
           this.message.set('page', 'index');

@@ -25,8 +25,8 @@ export class TopbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get(`${this.message.baseUrl}Category/category.ac`).toPromise().then((result: APIResult) => {
-      if (result.code === 200) {
+    this.http.get(`${this.message.baseUrl}categories`).toPromise().then((result: APIResult) => {
+      if (result.code === 0) {
         this.categoryList = result.data;
       }
     }).catch((err: any) => console.log(err));

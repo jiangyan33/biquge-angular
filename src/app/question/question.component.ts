@@ -50,7 +50,7 @@ export class QuestionComponent implements OnInit {
 
     if (params.name && params.linkInformation) {
       this.http.post(`${this.message.baseUrl}Feature/addContentQuestion.ac`, params).toPromise().then((result: APIResult) => {
-        if (result.code === 200) {
+        if (result.code === 0) {
           window.alert('感谢您的反馈');
         }
       }).catch((err: any) => console.log(err));

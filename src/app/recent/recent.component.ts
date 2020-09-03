@@ -20,15 +20,15 @@ export class RecentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get(`${this.message.baseUrl}Novel/newAddList.ac`).toPromise().then((result: APIResult) => {
-      if (result.code === 200) {
-        this.newAddList = result.data;
+    this.http.get(`${this.message.baseUrl}books?isAsc=false&sort=create_date&pageSize=20&pageNum=1&updateCount=1`).toPromise().then((result: APIResult) => {
+      if (result.code === 0) {
+        this.newAddList = result.data.data;
       }
     }).catch((err: any) => console.log(err));
 
-    this.http.get(`${this.message.baseUrl}Novel/newUpdateList.ac`).toPromise().then((result: APIResult) => {
-      if (result.code === 200) {
-        this.newUpdateList = result.data;
+    this.http.get(`${this.message.baseUrl}books?isAsc=false&sort=update_date&pageSize=20&pageNum=1&updateCount=1`).toPromise().then((result: APIResult) => {
+      if (result.code === 0) {
+        this.newUpdateList = result.data.data;
       }
     }).catch((err: any) => console.log(err));
   }
