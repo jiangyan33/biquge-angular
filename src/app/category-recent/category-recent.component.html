@@ -1,18 +1,18 @@
 <div class="l">
-    <h2>好看的{{categoryName}}最近更新列表</h2>
+    <h2>最近更新的【{{categoryName}}】列表</h2>
     <ul>
         <li *ngFor="let item of recentUpdateList">
             <span class="s2">《<a [routerLink]="['/book/bookInfo',item.id]">{{item.name.substr(0,11)}}</a>》</span>
             <span class="s3">
-                <a *ngIf="item.new_chapter"
-                    [routerLink]="['/book/contentInfo',item.new_chapter_id]">{{item.new_chapter}}</a>
-                ({{item.update_time | date:"MM-dd"}})</span>
+                <a *ngIf="item.newChapter"
+                    [routerLink]="['/book/contentInfo',item.new_chapter_id]">{{item.newChapter}}</a>
+                ({{item.updateDate | date:"MM-dd"}})</span>
             <span class="s5">{{item.author}}</span>
         </li>
     </ul>
 </div>
 <div class="r">
-    <h2>好看的{{categoryName}}</h2>
+    <h2>热门的【{{categoryName}}】列表</h2>
     <ul>
         <li *ngFor='let item of hotList'>
             <span class="s2">

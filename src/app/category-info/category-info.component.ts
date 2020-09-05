@@ -12,7 +12,9 @@ import APIResult from '../entity';
   styleUrls: ['./category-info.component.css']
 })
 export class CategoryInfoComponent implements OnInit {
-  categoryInfo: any;
+  categoryBook: any;
+  updateCategoryBook: any;
+  hotCategoryBook: any;
 
   constructor(
     private http: HttpClient,
@@ -22,14 +24,24 @@ export class CategoryInfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
-      this.http.post(`${this.message.baseUrl}Novel/categoryInfo.ac`, { categoryId: params.params.categoryId })
+      this.http.get(`${this.message.baseUrl}categories/${params.params.categoryId}/books?bookSize=16`)
         .toPromise()
         .then((result: APIResult) => {
           if (result.code === 0) {
-            this.categoryInfo = result.data;
+            this.categoryBook = result.data.splice(0, 6);
+            this.hotCategoryBook = result.data;
             // 修改页尾
             // 分类页尾为不显示详情信息
             this.message.set('page', 'categoryInfo');
+          }
+        }).catch((err: any) => console.log(err));
+    });
+    this.route.paramMap.subscribe((params: any) => {
+      this.http.get(`${this.message.baseUrl}categories/${params.params.categoryId}/books?bookSize=10&sort=update_date`)
+        .toPromise()
+        .then((result: APIResult) => {
+          if (result.code === 0) {
+            this.updateCategoryBook = result.data;
           }
         }).catch((err: any) => console.log(err));
     });
