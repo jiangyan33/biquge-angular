@@ -1,7 +1,7 @@
 <div [class]="style">
     <div class="item" *ngFor="let item of hotList">
         <div class="image">
-            <a [routerLink]="['/book/bookInfo',item.id]">
+            <a [routerLink]="['/books/{item.id}']">
                 <img src="{{item.pic}}" alt="{{item.name}}" width="120" height="150" />
             </a>
         </div>

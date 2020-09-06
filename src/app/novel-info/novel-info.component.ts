@@ -11,8 +11,8 @@ import APIResult from '../entity';
   styleUrls: ['./novel-info.component.css']
 })
 export class NovelInfoComponent implements OnInit {
-  novelInfo: any;
-
+  book: any;
+  contentList: any;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -21,12 +21,16 @@ export class NovelInfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
-      this.http.post(`${this.message.baseUrl}Novel/info.ac`, { id: params.params.bookId }).toPromise().then((result: APIResult) => {
+      this.http.get(`${this.message.baseUrl}books/${params.params.bookId}`).toPromise().then((result: APIResult) => {
         if (result.code === 0) {
-          this.novelInfo = result.data;
+          this.book = result.data.book;
+          this.book.intro = this.book.intro.split('\n').filter((it: string) => it.trim());;
+
+          this.contentList = result.data.contentList;
           // 修改页尾
           this.message.set('page', 'novelInfo');
-          this.message.set('novelInfo', this.novelInfo);
+          // todo:这个不清楚做什么的
+          // this.message.set('novelInfo', this.novelInfo);
         }
       }).catch((err: any) => console.log(err));
     });
