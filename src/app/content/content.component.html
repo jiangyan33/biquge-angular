@@ -1,5 +1,5 @@
-<div class="content_read" *ngIf="novelInfo&&contentInfo">
-    <app-question #question [contentInfo]="contentInfo"></app-question>
+<div class="content_read" *ngIf="currentPage">
+    <!-- <app-question #question [contentInfo]="currentPage"></app-question> -->
     <div class="box_con">
         <div class="con_top" [ngStyle]="getMessage('divStyle')">
             <div id="page_set" [ngStyle]="getMessage('divStyle')">
@@ -60,32 +60,29 @@
                 夜间<input type=checkbox [checked]="styleValue.night==='0'?false:true" (click)="setNight()" />
             </div>
             <a routerLink="/">笔趣阁</a> &gt;
-            <a [routerLink]="['/book/categoryInfo',novelInfo.category_id]">{{novelInfo.category_name}}</a> &gt;
-            <a [routerLink]="['/book/bookInfo',novelInfo.id]">{{novelInfo.name}}</a> &gt;
-            {{contentInfo.chapter}}
+            <a [routerLink]="['/book/categoryInfo',bookInfo.categoryId]">{{bookInfo.categoryName}}</a> &gt;
+            <a [routerLink]="['/book/bookInfo',bookInfo.id]">{{bookInfo.name}}</a> &gt;
+            {{currentPage.chapter}}
         </div>
         <div class="bookname">
-            <h1>{{contentInfo.chapter}}</h1>
+            <h1>{{currentPage.chapter}}</h1>
             <div class="bottem1">
-                <a *ngIf="contentInfo.pre_id"
-                    [routerLink]="['/book/contentInfo',contentInfo.pre_id]">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a [routerLink]="['/book/bookInfo',novelInfo.id]">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                <a *ngIf=" contentInfo.next_id"
-                    [routerLink]="['/book/contentInfo',contentInfo.next_id]">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a *ngIf="previousPage"
+                    [routerLink]="['/book/contentInfo',previousPage.id]">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a [routerLink]="['/book/bookInfo',bookInfo.id]">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                <a *ngIf="nextPage" [routerLink]="['/book/contentInfo',nextPage.id]">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a>加入书签</a>
             </div>
             <div class="lm">推荐阅读：
                 <a>阅读</a>
             </div>
         </div>
-        <div id="content" [ngStyle]="style" [innerHtml]='contentInfo.content'>
+        <div id="content" [ngStyle]="style" [innerHtml]='currentPage.remark'>
         </div>
         <div class="bottem2">
-            <a *ngIf="contentInfo.pre_id"
-                [routerLink]="['/book/contentInfo',contentInfo.pre_id]">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a [routerLink]="['/book/bookInfo',novelInfo.id]">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
-            <a *ngIf="contentInfo.next_id"
-                [routerLink]="['/book/contentInfo',contentInfo.next_id]">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a *ngIf="previousPage" [routerLink]="['/book/contentInfo',previousPage.id]">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a [routerLink]="['/book/bookInfo',bookInfo.id]">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a *ngIf="nextPage" [routerLink]="['/book/contentInfo',nextPage.id]">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a (click)="question.show()" class="danger">章节报错</a>
         </div>
     </div>

@@ -17,9 +17,10 @@ export class ContentComponent implements OnInit, OnDestroy {
   styleValue: StyleValue;
   // 样式
   style: Style;
-
-  novelInfo: any;
-  contentInfo: any;
+  currentPage: any;
+  previousPage: any;
+  nextPage: any;
+  bookInfo: any;
 
   constructor(
     private http: HttpClient,
@@ -75,15 +76,17 @@ export class ContentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
-      this.http.post(`${this.message.baseUrl}Novel/content.ac`, { id: params.params.chapterId }).toPromise().then((result: APIResult) => {
+      this.http.get(`${this.message.baseUrl}contents/${params.params.chapterId}`).toPromise().then((result: APIResult) => {
         if (result.code === 0) {
-          this.novelInfo = result.data[0];
-          this.contentInfo = result.data[1];
-
-          this.contentInfo.content = '&nbsp;&nbsp;&nbsp;&nbsp;' + this.contentInfo.content.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
+          if (result.data) {
+            this.bookInfo = result.data.book;
+            this.previousPage = result.data.result.previousPage;
+            this.currentPage = result.data.result.currentPage;
+            this.nextPage = result.data.result.nextPage;
+            this.currentPage.remark = '&nbsp;&nbsp;&nbsp;&nbsp;' + this.currentPage.remark.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
+          }
           // 修改页尾
           this.message.set('page', 'contentInfo');
-          this.message.set('novelInfo', this.novelInfo);
         }
       }).catch((err: any) => console.log(err));
     });
