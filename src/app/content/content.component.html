@@ -1,5 +1,4 @@
 <div class="content_read" *ngIf="currentPage">
-    <!-- <app-question #question [contentInfo]="currentPage"></app-question> -->
     <div class="box_con">
         <div class="con_top" [ngStyle]="getMessage('divStyle')">
             <div id="page_set" [ngStyle]="getMessage('divStyle')">
@@ -83,7 +82,7 @@
             <a *ngIf="previousPage" [routerLink]="['/book/contentInfo',previousPage.id]">上一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a [routerLink]="['/book/bookInfo',bookInfo.id]">章节列表</a> &nbsp;&nbsp;&nbsp;&nbsp;
             <a *ngIf="nextPage" [routerLink]="['/book/contentInfo',nextPage.id]">下一章</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a (click)="question.show()" class="danger">章节报错</a>
+            <a class="danger">章节报错</a>
         </div>
     </div>
 </div>

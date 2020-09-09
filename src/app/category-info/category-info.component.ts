@@ -41,7 +41,7 @@ export class CategoryInfoComponent implements OnInit {
         .toPromise()
         .then((result: APIResult) => {
           if (result.code === 0) {
-            this.updateCategoryBook = result.data;
+            this.updateCategoryBook = result.data.filter((it: { newChapter: any; }) => it.newChapter);
           }
         }).catch((err: any) => console.log(err));
     });
