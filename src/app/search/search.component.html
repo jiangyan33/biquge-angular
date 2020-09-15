@@ -17,9 +17,9 @@
                 </span>
                 <span class="s2">{{item.author}}</span>
                 <span class="s3">
-                    <a [routerLink]="['/book/contentInfo',item.new_chapter_id]">{{item.new_chapter}}</a>
+                    <a [routerLink]="['/book/contentInfo',item.new_chapter_id]">{{item.newChapter}}</a>
                 </span>
-                <span class="s2">{{item.update_time | date:"yyyy-MM-dd"}}
+                <span class="s2">{{item.updateDate | date:"yyyy-MM-dd"}}
                 </span>
             </li>
         </ul>
