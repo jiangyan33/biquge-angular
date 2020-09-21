@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "deployUrl": "http://cdn.jiangyan.fun/book/",
+            "baseHref": "http://cdn.jiangyan.fun/book/",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -121,6 +121,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "biquge-angular"
 }
