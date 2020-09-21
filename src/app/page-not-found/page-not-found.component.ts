@@ -13,7 +13,7 @@ export class PageNotFoundComponent implements OnInit {
   href: string;
   delay: number;
   constructor(private router: Router, private route: ActivatedRoute) {
-    this.src = '/assets/images/err.gif';
+    this.src = 'assets/images/err.gif';
     this.href = '/';
     this.delay = 5;
   }
