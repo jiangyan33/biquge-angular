@@ -12,7 +12,7 @@
                 <a>加入书架</a>,
                 <a (click)="gotoEnd()">直达底部</a>
             </p>
-            <p>最后更新：{{book.updateTime | date:"yyyy-MM-dd"}}</p>
+            <p>最后更新：{{book.updateDate | date:"yyyy-MM-dd"}}</p>
             <p>最新章节：<a [routerLink]="['/book/contentInfo',book.newChapterId]">{{book?.newChapter}}</a>
             </p>
         </div>

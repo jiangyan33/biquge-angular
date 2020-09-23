@@ -5,7 +5,7 @@
             <span class="s2">《<a [routerLink]="['/book/bookInfo',item.id]">{{item.name.substr(0,11)}}</a>》</span>
             <span class="s3">
                 <a *ngIf="item.newChapter"
-                    [routerLink]="['/book/contentInfo',item.new_chapter_id]">{{item.newChapter}}</a>
+                    [routerLink]="['/book/contentInfo',item.newChapterId]">{{item.newChapter}}</a>
                 ({{item.updateDate | date:"MM-dd"}})</span>
             <span class="s5">{{item.author}}</span>
         </li>
