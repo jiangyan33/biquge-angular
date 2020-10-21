@@ -12,7 +12,7 @@ export class RecommendationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recommendList = [{ categoryName: '武侠', name: '剑魔独孤求败', author: '令狐庸', id: '1' }];
+    this.recommendList = [{ categoryName: '武侠', name: '剑魔独孤求败', author: '令狐庸', id: 72 }];
   }
 
 }

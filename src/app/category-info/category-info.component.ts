@@ -24,7 +24,7 @@ export class CategoryInfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
-      this.http.get(`${this.message.baseUrl}categories/${params.params.categoryId}/books?bookSize=16`)
+      this.http.get(`${this.message.baseUrl}categories/${params.params.categoryId}/books?pageSize=16&sort=hot&isAsc=false`)
         .toPromise()
         .then((result: APIResult) => {
           if (result.code === 0) {

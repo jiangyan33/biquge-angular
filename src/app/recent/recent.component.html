@@ -9,7 +9,7 @@
                 <a [routerLink]="['/book/contentInfo',item.newChapterId]">{{item.newChapter}}</a>
             </span>
             <span class="s4">{{item.author}}</span>
-            <span class="s5">{{item.updateTime | date:"MM-dd"}}</span>
+            <span class="s5">{{item.updateDate | date:"MM-dd"}}</span>
         </li>
     </ul>
 </div>
@@ -19,7 +19,7 @@
         <li *ngFor="let item of  newAddList">
             <span class="s1">[{{item.categoryName.substr(0, 2)}}]</span>
             <span class="s2"><a [routerLink]="['/book/bookInfo',item.id]">{{item.name.substr(0,10)}}</a></span>
-            <span class="s5">{{item.createTime | date:"yyyy-MM-dd"}}</span>
+            <span class="s5">{{item.author}}</span>
         </li>
     </ul>
 </div>
