@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from '../message.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import APIResult from '../entity';
 import { Style } from './style';
@@ -75,22 +75,8 @@ export class ContentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: any) => {
-      this.http.get(`${this.message.baseUrl}contents/${params.params.chapterId}`).toPromise().then((result: APIResult) => {
-        if (result.code === 0) {
-          if (result.data) {
-            this.bookInfo = result.data.book;
-            this.previousPage = result.data.result.previousPage;
-            this.currentPage = result.data.result.currentPage;
-            this.nextPage = result.data.result.nextPage;
-            this.currentPage.remark = '&nbsp;&nbsp;&nbsp;&nbsp;' + this.currentPage.remark.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
-          }
-          // 修改页尾
-          this.message.set('page', 'contentInfo');
-        }
-      }).catch((err: any) => console.log(err));
-    });
-
+    // 初始化数据
+    this.getData();
     // 初始化cookie night,font,color,width,size,bgcolor
     this.styleValue = {
       font: this.message.getCookie('font') || '方正启体简体',
@@ -115,5 +101,23 @@ export class ContentComponent implements OnInit, OnDestroy {
 
   getMessage(name: string) {
     return this.message.get(name);
+  }
+
+  getData() {
+    this.route.paramMap.subscribe(async (params: any) => {
+      let result = await this.http.get<APIResult>(`${this.message.baseUrl}contents/${params.params.chapterId}`).toPromise();
+      if (result.code === 0) {
+        if (result.data) {
+          var value = await this.http.get(result.data.result.currentPage.remark, { responseType: "text" }).toPromise();
+          result.data.result.currentPage.remark = '&nbsp;&nbsp;&nbsp;&nbsp;' + value.replace(/\n/g, '<br> &nbsp;&nbsp;&nbsp;&nbsp;');
+          this.currentPage = result.data.result.currentPage;
+          this.bookInfo = result.data.book;
+          this.previousPage = result.data.result.previousPage;
+          this.nextPage = result.data.result.nextPage;
+          // 修改页尾
+          this.message.set('page', 'contentInfo');
+        }
+      }
+    })
   }
 }
